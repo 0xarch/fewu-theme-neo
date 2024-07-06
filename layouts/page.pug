@@ -5,18 +5,19 @@ html
         +meta(user.note,i18n('Posts'))
         +BasicStyleSheet
         +BasicECMAScript
-        +use('KFooter')
-        +use('KNavigationBar')
-        +use('KPageNavigator')
+        +useComponent('Neo/PageNavigator')
+        +useComponent('Neo/NavigationBar')
+        +useComponent('Neo/Footer')
+        +useComponent('Neo/SearchComp')
         title= __title__(i18n('Posts'),user.name)
     body(OCP='OVERRIDE') 
-        +KNavigationBar
+        +NavigationBar
         +PageLabel(i18n('Posts') + i18n('Page '+cycling.now))
         main.uWcon
             ul.cPostCon
                 each bid in sort.defaultOrder.slice(10*(cycling.now-1),10*(cycling.now))
                     +SinglePost(IDMap.get(bid))
                     br
-            +KPageNavigator(cycling.total,cycling.now,'page')
+            +PageNavigator(cycling.total,cycling.now,'page')
         hr
-        +KFooter
+        +Footer

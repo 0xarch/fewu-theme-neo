@@ -6,13 +6,15 @@ html(lang="zh")
         +BasicStyleSheet
         +BasicECMAScript
         +use('KFooter')
-        +use('KNavigationBar')
         +use('KUserIntro')
+        +useComponent('Neo/NavigationBar')
+        +useComponent('Neo/Footer')
+        +useComponent('Neo/SearchComp')
         if sort.defaultOrder.length>10
-            +use('KPageNavigator')
+            +useComponent('Neo/PageNavigator')
         title= __title__(i18n('Home'),user.name)
     body(OCP='OVERRIDE')
-        +KNavigationBar
+        +NavigationBar
         +KUserIntro
         br
         main.uWcon
@@ -21,6 +23,6 @@ html(lang="zh")
                     +SinglePost(IDMap.get(bid))
                     br
         if sort.defaultOrder.length>10
-            +KPageNavigator(Math.ceil(sort.defaultOrder.length/10),1,'page')
+            +PageNavigator(Math.ceil(sort.defaultOrder.length/10),1,'page')
         hr
-        +KFooter
+        +Footer

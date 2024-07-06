@@ -1,6 +1,21 @@
 - let COMPONENTS = {}
+- let __COMPONENTS = {}
 - let linkPrefix = (buildMode=='devel'||!settings.cdn)?(v)=>file(v):(v)=>settings.cdn+v
 - let colors = ['blue','green','yellow','orange','red','purple','brown']
+- 
+    function declareComponent(location,types){ 
+        __COMPONENTS[location] = types
+    }
+mixin useComponent(location)
+    if __COMPONENTS[location]
+        if __COMPONENTS[location].includes('CSS')
+            link(rel='stylesheet',href=linkPrefix('files/Components/'+location+'/style.css'))
+        if __COMPONENTS[location].includes('JS')
+            script(src=linkPrefix('files/Components/'+location+'/script.js'))
+        if __COMPONENTS[location].includes('ES')
+            script(type="module",src=linkPrefix('files/Components/'+location+'/script.js'))
+        - __COMPONENTS[location] = undefined
+
 
 include /components/KContentTable.pug
 include /components/KFooter.pug
@@ -8,6 +23,8 @@ include /components/KNavigationBar.pug
 include /components/KNextPage.pug
 include /components/KPageNavigator.pug
 include /components/KUserIntro.pug
+
+include /Components/Neo.pug
 
 include /mixins/components.pug
 
@@ -25,6 +42,7 @@ mixin BasicStyleSheet()
 
 mixin BasicECMAScript()
     - // SOME VOID
+    script(src=linkPrefix('/files/ui.js'))
 
 mixin use(name)
     if COMPONENTS[name]

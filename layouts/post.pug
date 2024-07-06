@@ -12,7 +12,7 @@ html(lang="zh")
         +use('KNextPage')
         +use('KNavigationBar')
         title= __title__(post.title,'read')
-    body.colorful(OCP='OVERRIDE',style='--color1:'+Plugin.getColorByString(post.foreword)+';--color2:'+Plugin.getColorByString(post.parsed.foreword))
+    body.colorful(OCP='OVERRIDE',style='--color1:'+Plugin.getColorByString(post.foreword).toHex()+';--color2:'+Plugin.getColorByString(post.parsed.foreword).toHex())
         +KNavigationBar
         +PageLabel
         main.uWcon

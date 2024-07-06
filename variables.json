@@ -33,7 +33,7 @@
         "Project Fivewu": {
             "FewuLabel": {
                 "type": "Text",
-                "target": "Fewu Generator "
+                "target": "Fewu Generator"
             },
             "Version": {
                 "type": "JS/ConstGetter",
@@ -44,12 +44,16 @@
                 "target": "https://github.com/0xarch/fewu"
             }
         },
-        "Simplus": {
+        "Neo": {
             "Version": {
                 "type": "JS/ThemeGetter",
                 "target": "VERSION_NUMBER"
             },
             "Github": {
+                "type": "Link",
+                "target": "https://github.com/0xarch/fewu-theme-neo"
+            },
+            "Simplus": {
                 "type": "Link",
                 "target": "https://github.com/0xarch/fewu-theme-simplus"
             }

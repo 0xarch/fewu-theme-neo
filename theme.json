@@ -13,13 +13,14 @@
         }
     ],
     "plugin": true,
-    "Modules.search": {
-        "use": [
-            "title",
-            "date",
-            "id",
-            "content"
-        ]
+    "module": {
+        "search": {
+            "use": [
+                "title",
+                "date",
+                "id"
+            ]
+        }
     },
     "parser": "PUG",
     "template": "post.pug",
