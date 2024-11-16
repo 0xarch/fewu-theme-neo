@@ -10,10 +10,10 @@ html(lang="zh")
         +use('KContentTable')
         +use('KFooter')
         +use('KNextPage')
-        +use('KNavigationBar')
+        +useComponent('Neo/NavigationBar')
         title= __title__(post.title,'read')
     body.colorful(OCP='OVERRIDE',style='--color1:'+Plugin.getColorByString(post.foreword).toHex()+';--color2:'+Plugin.getColorByString(post.parsed.foreword).toHex())
-        +KNavigationBar
+        +NavigationBar
         +PageLabel
         main.uWcon
             unless post.old == true

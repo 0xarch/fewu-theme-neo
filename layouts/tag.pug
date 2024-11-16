@@ -7,11 +7,11 @@ html
         +BasicStyleSheet
         +BasicECMAScript
         +use('KFooter')
-        +use('KNavigationBar')
+        +useComponent('Neo/NavigationBar')
         +use('KPageNavigator')
         title= __title__(i18n('Tags'),user.name)
     body.new(OCP='OVERRIDE')
-        +KNavigationBar
+        +NavigationBar
         +PageLabel(i18n('Tags'))
         main.uWcon
             .cSortCon

@@ -6,11 +6,11 @@ html
         +BasicStyleSheet
         +BasicECMAScript
         +use('KFooter')
-        +use('KNavigationBar')
+        +useComponent('Neo/NavigationBar')
         +use('KPageNavigator')
         title= __title__(varias.name,user.name)
     body(OCP='OVERRIDE')
-        +KNavigationBar
+        +NavigationBar
         +PageLabel(i18n('Tag')+' - '+varias.name)
         main.uWcon
             ul.cPostCon
