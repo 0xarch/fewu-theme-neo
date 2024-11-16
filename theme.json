@@ -1,7 +1,7 @@
 {
-    "name": "SIMPLUS Theme",
+    "name": "Neo Theme",
     "author": "0xarch",
-    "description": "Simple theme for Fewu",
+    "description": "Fuwari-like theme for Fewu",
     "lib": [
         "@:highlightjs:&&:unpkg"
     ],

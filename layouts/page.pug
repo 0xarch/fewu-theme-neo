@@ -5,7 +5,8 @@ html
         +meta(user.note,i18n('Posts'))
         +BasicStyleSheet
         +BasicECMAScript
-        +useComponent('Neo/PageNavigator')
+        +useComponent('Neo/Basic')
+        +useComponent('Neo/PageNavigator.Test')
         +useComponent('Neo/NavigationBar')
         +useComponent('Neo/Footer')
         +useComponent('Neo/SearchComp')
@@ -19,5 +20,4 @@ html
                     +SinglePost(IDMap.get(bid))
                     br
             +PageNavigator(cycling.total,cycling.now,'page')
-        hr
         +Footer

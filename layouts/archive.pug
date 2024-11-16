@@ -3,11 +3,11 @@ doctype html
 html 
     head 
         +meta(user.note,i18n('Archives'))
-        +BasicStyleSheet
         +BasicECMAScript
-        +use('KFooter')
-        +use('KPageNavigator')
+        +useComponent('Neo/Basic')
+        +useComponent('Neo/PageNavigator.Test')
         +useComponent('Neo/NavigationBar')
+        +useComponent('Neo/Footer')
         title= __title__(i18n('Archives'),user.name)
     body(OCP='OVERRIDE') 
         +NavigationBar
@@ -26,5 +26,5 @@ html
                 ul.cPostCon
                     each item in v
                         +SinglePost(IDMap.get(item))
-            +KPageNavigator(cycling.total,cycling.now,'archive')
-        +KFooter
+            +PageNavigator(cycling.total,cycling.now,'archive')
+        +Footer

@@ -3,11 +3,11 @@ include /mixins/post_script.pug
 doctype html 
 html(lang="zh")
     head 
-        +BasicStyleSheet
         +BasicECMAScript
         +prelude(post)
         +meta(post)
-        +use('KFooter')
+        +useComponent('Neo/Footer')
+        +useComponent('Neo/Basic')
         +useComponent('Neo/NavigationBar')
         title= __title__(post.title,'read')
     body.colorful(OCP='OVERRIDE',style='--bColor:'+plugin.getColorByString(post.content).toHex())
@@ -16,4 +16,4 @@ html(lang="zh")
         main
             article.uWcon
                 #markdown_fillContent.container!= post.parsed.content
-        +KFooter
+        +Footer

@@ -3,15 +3,16 @@ doctype html
 html(lang="zh")
     head
         +meta(user.note,user.keyword||'')
-        +BasicStyleSheet
         +BasicECMAScript
         +use('KFooter')
         +use('KUserIntro')
+        +useComponent('Neo/Basic')
         +useComponent('Neo/NavigationBar')
         +useComponent('Neo/Footer')
         +useComponent('Neo/SearchComp')
+        +useComponent('Neo/Basic')
         if sort.defaultOrder.length>10
-            +useComponent('Neo/PageNavigator')
+            +useComponent('Neo/PageNavigator.Test')
         title= __title__(i18n('Home'),user.name)
     body(OCP='OVERRIDE')
         +NavigationBar
@@ -24,5 +25,4 @@ html(lang="zh")
                     br
         if sort.defaultOrder.length>10
             +PageNavigator(Math.ceil(sort.defaultOrder.length/10),1,'page')
-        hr
         +Footer

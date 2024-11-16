@@ -3,10 +3,10 @@ doctype html
 html
     head 
         +meta(user.note,user.keyword||'')
-        +BasicStyleSheet
-        +BasicECMAScript
-        +use('KFooter')
+        +BasicECMAScript 
+        +useComponent('Neo/Basic')
         +useComponent('Neo/NavigationBar')
+        +useComponent('Neo/Footer')
         title= __title__(i18n('Status'),user.name)
     body(OCP='OVERRIDE')
         +NavigationBar
@@ -29,5 +29,4 @@ html
             section
                 each v,k in db.modules.versions
                     p= k+' = '+v
-        hr
-        +KFooter
+        +Footer

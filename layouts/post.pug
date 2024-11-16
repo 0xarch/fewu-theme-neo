@@ -5,12 +5,13 @@ html(lang="zh")
     head 
         +prelude(post)
         +meta(post)
-        +BasicStyleSheet
         +BasicECMAScript
         +use('KContentTable')
         +use('KFooter')
         +use('KNextPage')
+        +useComponent('Neo/Basic')
         +useComponent('Neo/NavigationBar')
+        +useComponent('Neo/Footer')
         title= __title__(post.title,'read')
     body.colorful(OCP='OVERRIDE',style='--color1:'+Plugin.getColorByString(post.foreword).toHex()+';--color2:'+Plugin.getColorByString(post.parsed.foreword).toHex())
         +NavigationBar
@@ -29,6 +30,5 @@ html(lang="zh")
                 +license_notice(post)
             br
             +KNextPage
-        hr
-        +KFooter
+        +Footer
         +KContentTable
