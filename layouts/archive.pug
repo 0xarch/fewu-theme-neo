@@ -3,9 +3,8 @@ doctype html
 html 
     head 
         +meta(user.note,i18n('Archives'))
-        +BasicECMAScript
         +useComponent('Neo/Basic')
-        +useComponent('Neo/PageNavigator.Test')
+        +useComponent('Neo/PageNavigator')
         +useComponent('Neo/NavigationBar')
         +useComponent('Neo/Footer')
         title= __title__(i18n('Archives'),user.name)

@@ -3,16 +3,14 @@ doctype html
 html(lang="zh")
     head
         +meta(user.note,user.keyword||'')
-        +BasicECMAScript
-        +use('KFooter')
         +use('KUserIntro')
         +useComponent('Neo/Basic')
         +useComponent('Neo/NavigationBar')
         +useComponent('Neo/Footer')
         +useComponent('Neo/SearchComp')
-        +useComponent('Neo/Basic')
+        +useComponent('Neo/PostCard')
         if sort.defaultOrder.length>10
-            +useComponent('Neo/PageNavigator.Test')
+            +useComponent('Neo/PageNavigator')
         title= __title__(i18n('Home'),user.name)
     body(OCP='OVERRIDE')
         +NavigationBar
@@ -21,7 +19,7 @@ html(lang="zh")
         main.uWcon
             ul.cPostCon
                 each bid in sort.defaultOrder.slice(0,10)
-                    +SinglePost(IDMap.get(bid))
+                    +PostCard(IDMap.get(bid))
                     br
         if sort.defaultOrder.length>10
             +PageNavigator(Math.ceil(sort.defaultOrder.length/10),1,'page')

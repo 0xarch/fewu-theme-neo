@@ -4,11 +4,10 @@ doctype html
 html 
     head
         +meta(user.note,user.keyword||i18n('Tags'))
-        +BasicStyleSheet
-        +BasicECMAScript
-        +use('KFooter')
+        +useComponent('Neo/Basic')
+        +useComponent('Neo/Footer')
         +useComponent('Neo/NavigationBar')
-        +use('KPageNavigator')
+        +useComponent('Neo/PageNavigator')
         title= __title__(i18n('Tags'),user.name)
     body.new(OCP='OVERRIDE')
         +NavigationBar
@@ -17,6 +16,5 @@ html
             .cSortCon
                 each item in cycling.value
                     +SingleSort(item.value,'tag')
-            +KPageNavigator(cycling.total,cycling.now,'tag')
-        br
-        +KFooter
+            +PageNavigator(cycling.total,cycling.now,'tag')
+        +Footer

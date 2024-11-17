@@ -3,11 +3,10 @@ doctype html
 html 
     head 
         +meta(user.note,varias.name)
-        +BasicStyleSheet
-        +BasicECMAScript
-        +use('KFooter')
-        +use('KPageNavigator')
+        +useComponent('Neo/Basic')
         +useComponent('Neo/NavigationBar')
+        +useComponent('Neo/PageNavigator')
+        +useComponent('Neo/Footer')
         title= __title__(varias.name,user.name)
     body(OCP='OVERRIDE')
         +NavigationBar
@@ -16,5 +15,5 @@ html
             ul.cPostCon
                 each bid in cycling.value
                     +SinglePost(IDMap.get(+bid))
-                +KPageNavigator(cycling.total,cycling.now,'category/s'+varias.name)
-        +KFooter
+                +PageNavigator(cycling.total,cycling.now,'category/s'+varias.name)
+        +Footer

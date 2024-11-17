@@ -1,20 +1,11 @@
 mixin prelude(post)
     if post.property.highlight
-        link(rel="stylesheet",href="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.8.0/styles/default.min.css")
-        script(src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.8.0/highlight.min.js")
-        script.
-            window.addEventListener('DOMContentLoaded',()=>{
-                hljs.highlightAll();
-            })
-    -//script(src=linkPrefix("files/post.js"))
-    -//script(src=linkPrefix("files/ui.js"))
-    link(rel="stylesheet",href=linkPrefix("files/post-fix.css"))
-    style.
-        blockquote{
-            margin: 4px;
-            border-left: 2px solid var(--Cbrand);
-            opacity: .75
-        }
+        link(rel="stylesheet",href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css")
+        script(src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js")
+        if post.property['highlight-languages']
+            each v in post.property['highlight-languages'].split(" ")
+                script(src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/"+v+"min.js")
+    link(rel="stylesheet",href=file("files/post-fix.css"))
 
 mixin meta(post)
     link(rel="icon",href=file("files/icon.svg"))

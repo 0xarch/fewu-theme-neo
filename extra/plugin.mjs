@@ -1,7 +1,8 @@
 const SVG_PRESET = {
     'gnome-feather-tool': `<svg class="feather feather-tool" viewBox="0 0 24 24" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`,
     'kde-menu': `<svg viewBox="0 0 48 48" fill="none" height="48" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M10,14h24M10,24h28M10,34h28"></path></svg>`,
-    'kde-rss': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="1em" height="1em" fill="currentcolor"><circle class="symbol" cx="2" cy="6" r="1"></circle><path class="symbol" d="m1 4a3 3 0 013 3h1A4 4 0 001 3z"></path><path class="symbol" d="m1 2a5 5 0 015 5h1A6 6 0 001 1z"></path></svg>`
+    'kde-rss': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="1em" height="1em" fill="currentcolor"><circle class="symbol" cx="2" cy="6" r="1"></circle><path class="symbol" d="m1 4a3 3 0 013 3h1A4 4 0 001 3z"></path><path class="symbol" d="m1 2a5 5 0 015 5h1A6 6 0 001 1z"></path></svg>`,
+    'md-calendar-today-outline-rounded': `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24" fill="currentcolor"><path fill="currentColor" d="M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V3q0-.425.288-.712T7 2t.713.288T8 3v1h8V3q0-.425.288-.712T17 2t.713.288T18 3v1h1q.825 0 1.413.588T21 6v14q0 .825-.587 1.413T19 22zm0-2h14V10H5zM5 8h14V6H5zm0 0V6z"/></svg>`
 }
 
 let GObject;
@@ -44,7 +45,8 @@ let provide = {
             }
         }
     },
-    load_svg: (str) => SVG_PRESET[str]
+    load_svg: (str) => SVG_PRESET[str],
+    getSvg: (str) => SVG_PRESET[str]
 }
 
 export default {

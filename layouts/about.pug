@@ -3,11 +3,10 @@ include /mixins/post_script.pug
 doctype html 
 html(lang="zh")
     head 
-        +BasicECMAScript
         +prelude(post)
         +meta(post)
-        +useComponent('Neo/Footer')
         +useComponent('Neo/Basic')
+        +useComponent('Neo/Footer')
         +useComponent('Neo/NavigationBar')
         title= __title__(post.title,'read')
     body.colorful(OCP='OVERRIDE',style='--bColor:'+plugin.getColorByString(post.content).toHex())

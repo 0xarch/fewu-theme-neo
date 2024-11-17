@@ -4,11 +4,10 @@ doctype html
 html 
     head
         +meta(user.note,user.keyword||'')
-        +BasicStyleSheet
-        +BasicECMAScript
-        +use('KFooter')
-        +use('KPageNavigator')
+        +useComponent('Neo/Basic')
+        +useComponent('Neo/Footer')
         +useComponent('Neo/NavigationBar')
+        +useComponent('Neo/PageNavigator')
         title= __title__(i18n('Categories'),user.name)
     body.new(OCP='OVERRIDE')
         +NavigationBar
@@ -17,5 +16,5 @@ html
             .cSortCon
                 each item in cycling.value
                     +SingleSort(item.value,'category')
-            +KPageNavigator(cycling.total,cycling.now,'category')
-        +KFooter
+            +PageNavigator(cycling.total,cycling.now,'category')
+        +Footer
