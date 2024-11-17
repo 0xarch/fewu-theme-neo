@@ -1,4 +1,4 @@
-(function () {
+window.___KContentTable = function () {
     let toc, opened = true;
 
     const TOC = (markdown_content) => {
@@ -51,12 +51,16 @@
         update();
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    // document.addEventListener('DOMContentLoaded', () => {
         toc = document.querySelector('.KContentTable>.kTOC')
         let md_content = document.getElementById('markdown_fillContent')
-    /*if(!_M_){*/TOC(md_content); document.querySelector('.KContentTable>.kButton').onclick = () => {
+        TOC(md_content);
+        let openButton = document.querySelector('.KContentTable>.kButton');
+        if(openButton) openButton.onclick = () => {
             toc.style.display = opened ? 'block' : 'none';
             opened = !opened;
-        }/*}*/
-    })
-})();
+        }
+    // })
+};
+
+// ___KContentTable();
