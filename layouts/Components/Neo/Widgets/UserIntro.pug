@@ -3,7 +3,7 @@
 mixin Widget-UserIntro(user)
     .Neo.UserIntro.NeoWidget
         if user.avatar
-            img.avatar(src=user.avatar)
+            img.avatar(loading='lazy',src=user.avatar)
         h2.userName
             a(href=user.url)= user.name
         .intro= user.data.intro || user.data.announcement
