@@ -1,0 +1,49 @@
+- declareComponent('Neo/LicenseNotice',['CSS'])
+
+mixin LicenseNotice(post)
+    .Neo.LicenseNotice
+        .title= post.title
+        if post.property['license-url']
+            .url=post.property['license-url']
+        .announce-box
+            .author
+                span.label= i18n('Author')
+                span.val= post.author || user.name
+
+            .publish
+                span.label= i18n('Published on')
+                span.val= post.fuzzyDate.toString('-')
+            .license
+                span.label= i18n('License Agreement')
+                span.val
+                    if post.license.isCreativeCommons()
+                        - let url = 'https://creativecommons.org/licenses/'
+                        - let text = 'CC '
+                        - let is = (v)=>post.license.includes(v)
+                        if is('BY')
+                            - url += 'by-'
+                            - text += 'BY-'
+                        if is('NC')
+                            - url += 'nc-'
+                            - text += 'NC-'
+                        if is('ND')
+                            - url += 'nd-'
+                            - text += 'ND-'
+                        if is('SA')
+                            - url += 'sa-'
+                            - text += 'SA-'
+                        - let cc_version = '4.0'
+                        if post.property['license-version']
+                            - cc_version = post.property['license-version']
+                        else
+                            - let tmp_text = post.property.license.replace(/[A-z\-]+/,'!@#')
+                            if tmp_text.match(/!@# ?[0-9.]{3,}$/)
+                                - cc_version = tmp_text.replace(/!@# ?/,'') 
+                        - url = url.replace(/\-$/,'') + '/' + cc_version +'/'
+                        - text = text.replace(/\-$/,'') + ' ' + cc_version
+                        a.h-link(href=url)= text
+                    else if post.license.type === 'REPRINT'
+                        a= i18n('@CC_REPRINT_F')
+                    else
+                        a= i18n('@CC_PRIVATE_F')
+        .background!= plugin.getSvg('creative-commons')
