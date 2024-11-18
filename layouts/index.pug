@@ -23,7 +23,7 @@ html(lang="zh")
             .mainCon
                 ul.cPostCon
                     +PostCard(IDMap.get(sort.defaultOrder[0]))
-                    each bid in sort.defaultOrder.slice(1,9)
+                    each bid in sort.defaultOrder.slice(1,10)
                         br
                         +PostCard(IDMap.get(bid))
                 if sort.defaultOrder.length>10
