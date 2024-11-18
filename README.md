@@ -5,3 +5,5 @@ This is a fewu theme based on simplus and [fuwari](https://github.com/saicaca/fu
 Its main design was inspired from fuwari, and I'm working on port fuwari to fewu.
 
 Thanks [saicaca](https://github.com/saicaca) for such great theme!
+
+Thanks [FontAwesome](https://fontawesome.com) for great icons!
