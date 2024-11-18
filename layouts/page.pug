@@ -8,14 +8,20 @@ html
         +useComponent('Neo/NavigationBar')
         +useComponent('Neo/Footer')
         +useComponent('Neo/SearchComp')
+        +useComponent('Neo/PostCard')
+        +useComponent('Neo/Widgets/UserIntro')
         title= __title__(i18n('Posts'),user.name)
     body(OCP='OVERRIDE') 
         +NavigationBar
         +PageLabel(i18n('Posts') + i18n('Page '+cycling.now))
-        main.uWcon
-            ul.cPostCon
-                each bid in sort.defaultOrder.slice(10*(cycling.now-1),10*(cycling.now))
-                    +SinglePost(IDMap.get(bid))
-                    br
-            +PageNavigator(cycling.total,cycling.now,'page')
+        main.uWcon.withSide
+            .sideCon
+                +Widget-UserIntro(user)
+            .mainCon
+                ul.cPostCon
+                    +PostCard(IDMap.get(sort.defaultOrder[10*(cycling.now-1)]))
+                    each bid in sort.defaultOrder.slice(10*(cycling.now-1)+1,10*(cycling.now))
+                        br
+                        +PostCard(IDMap.get(bid))
+                +PageNavigator(cycling.total,cycling.now,'page')
         +Footer
