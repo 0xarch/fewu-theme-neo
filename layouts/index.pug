@@ -9,18 +9,23 @@ html(lang="zh")
         +useComponent('Neo/Footer')
         +useComponent('Neo/SearchComp')
         +useComponent('Neo/PostCard')
+        +useComponent('Neo/Widgets/UserIntro')
         if sort.defaultOrder.length>10
             +useComponent('Neo/PageNavigator')
         title= __title__(i18n('Home'),user.name)
     body(OCP='OVERRIDE')
         +NavigationBar
-        +KUserIntro
+        //- +KUserIntro
         br
-        main.uWcon
-            ul.cPostCon
-                each bid in sort.defaultOrder.slice(0,10)
-                    +PostCard(IDMap.get(bid))
-                    br
-        if sort.defaultOrder.length>10
-            +PageNavigator(Math.ceil(sort.defaultOrder.length/10),1,'page')
+        main.uWcon.withSide
+            .sideCon
+                +Widget-UserIntro(user)
+            .mainCon
+                ul.cPostCon
+                    +PostCard(IDMap.get(sort.defaultOrder[0]))
+                    each bid in sort.defaultOrder.slice(1,9)
+                        br
+                        +PostCard(IDMap.get(bid))
+                if sort.defaultOrder.length>10
+                    +PageNavigator(Math.ceil(sort.defaultOrder.length/10),1,'page')
         +Footer

@@ -1,0 +1,16 @@
+- declareComponent('Neo/SearchComp',['CSS','ES']);
+
+mixin SearchComp()
+    .Neo.SearchComp
+        a.openPanel= i18n('Search')
+        .URL= file('searchStrings.json')
+
+mixin SearchComp_Panel()
+    dialog.Neo.SearchComp_Panel
+        .searchBar.flex.jcc
+            input.--I
+            .--S= i18n('Search')
+            .--C ×
+        hr
+        .--P
+        - //.--C= i18n('Close Panel')

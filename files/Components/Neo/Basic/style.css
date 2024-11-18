@@ -1,0 +1,117 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/brands.min.css");
+:root {
+    color-scheme: light dark;
+    --hue: var(--configHue, 250);
+    --Wpage-width: min(calc(100% - 2rem), 75rem);
+    --Wcon: var(--Wpage-width);
+    --Cbrand: light-dark(oklch(.7 .14 var(--hue)), oklch(.75 .14 var(--hue)));
+    --Cdisplay: light-dark(#000000bf, #ffffffbf);
+    --Cbg: light-dark(oklch(.95 .01 var(--hue)), oklch(.16 .014 var(--hue)));
+    --Ccard-bg: light-dark(white, oklch(.23 .015 var(--hue)));
+    --Cbtn-plain-bg-hover: light-dark(oklch(.95 .025 var(--hue)), oklch(.3 .035 var(--hue)));
+    --Cbtn-content: light-dark(oklch(.55 .12 var(--hue)), oklch(.75 .1 var(--hue)));
+    --Cbtn-regular-bg: light-dark(oklch(.95 .025 var(--hue)), oklch(.33 .035 var(--hue)));
+    --Cbtn-regular-bg-hover: light-dark(oklch(.9 .05 var(--hue)), oklch(.38 .04 var(--hue)));;
+}
+@media(max-width:700px){.nomobile{display:none}}
+@media(min-width:701px){.onmobile{display:none}}
+body{ background: var(--Cbg); color: var(--Cdisplay);
+    margin: 0 }
+html::-webkit-scrollbar{display: none}
+html { scrollbar-width: none }
+hr { opacity: .5; border-bottom-width: 0px }
+.Nls { list-style: none }
+.alc,.jcc,.fl,.eaj{display: flex}.alc,.eaj{align-items: center}
+.jcc,.eaj{justify-content: center}.nowrap{text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.tac{text-align:center}.col{flex-direction:column}
+.jcsa{justify-content:space-around}.jcsb{justify-content:space-between}
+.intro,#intro{color:var(--secondary-color)}
+:root[ismobile=true] .nomobile{display:none}.fit{width:fit-content}
+.logo-of-theme{height:32px;width:80px;background:var(--Cbrand);color:#fff}
+.logo-of-theme::after{content:'simplus';font-size:16px}
+.clist{padding:20px}
+.clist hr{visibility:hidden}
+.meta>*{margin:4px}.less{margin:12px 0}
+.m0{margin:0}.p0{padding:0}.p8{padding:12px}
+*{-webkit-tap-highlight-color:#0000}
+.uWcon{ max-width: var(--Wcon); padding: 0 8px;
+    margin-left: auto; margin-right: auto }
+.cLinks { display: flex; flex-wrap: wrap }
+.cLinks a { display: block; text-wrap: nowrap }
+.cLinks>nav { flex: 1 0 0%; padding: 8px }
+.cLinks h3 { text-wrap: nowrap }
+.cPostCon,.cSortCon { list-style: none; padding:0 }
+.cSortCon>a { display: inline-block }
+a { text-decoration: none; color: var(--Cbrand) }
+
+/* FIX */
+.h1 { display: block; font-size: 2em; margin-block-start: .67em;
+    margin-block-end: .67em; margin-inline-start: 0;
+    margin-inline-end: 0; font-weight: bold;
+    unicode-bidi: isolate }
+
+@media(prefers-color-scheme:dark){.hljs{background: #232629;color:#f3f3f3}}
+
+body.not-ready {
+    opacity: 0;
+}
+
+main.withSide {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1rem;
+}
+
+@media(min-width: 1024px) {
+    main.withSide {
+        flex-direction: row;
+    }
+    .withSide>.mainCon {
+        width: calc(100% - 18.5rem);
+    }
+    .withSide>.sideCon {
+        width: 17.5rem;
+    }
+}
+
+.NeoWidget {
+    padding: 1rem;
+    border-radius: 1rem;
+    background: var(--Ccard-bg);
+}
+
+.Neo.PostCard .cover{
+    opacity: 0;
+}
+
+.cPostCon {
+    margin: 0;
+}
+
+.uWcon {
+    opacity: 0;
+    position: relative;
+    animation-name: general-fin;
+    animation-duration: .55s;
+}
+
+body.main-anim-finished .uWcon {
+    opacity: 1;
+}
+
+@keyframes general-fin {
+    from {
+        opacity: 0;
+        transform: scale(1.1);
+        top: 200px;
+    }
+    30% {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        top: 0px;
+    }
+}

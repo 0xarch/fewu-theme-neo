@@ -1,0 +1,22 @@
+- declareComponent('Neo/NavigationBar',['CSS']);
+
+mixin NavigationBar(options)
+    if ! options
+        - options = {}
+    header.Neo.NavigationBar(class=options.transparent ? '--transparent' : '', style=options.foregroundColor ? '--fColor:'+options.foregroundColor : '')
+        a.smooth-navigated.kLogo(href=file())
+            != (user.data && user.data.logo) ? user.data.logo : fewu.logo()
+            != theme.logoText
+        .toggle
+            != plugin.load_svg('kde-menu')
+        .kCon
+            - // each v in Object.assign(__prov_map||theme.headerObjects,theme.extraNavigations)
+            each v in (__prov_map||theme.headerObjects)
+                a.smooth-navigated(href=file(v[0]))= i18n(v[1])
+            each v in (theme.extraNavigations||[])
+                a(href=file(v[0]))= i18n(v[1])
+            if db.config.module && db.config.module.enable && db.config.module.enable.includes && db.config.module.enable.includes('search')
+                +useComponent('Neo/SearchComp')
+                +SearchComp
+        if db.config.module && db.config.module.enable && db.config.module.enable.includes && db.config.module.enable.includes('search')
+            +SearchComp_Panel

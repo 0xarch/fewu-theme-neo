@@ -1,0 +1,15 @@
+- declareComponent('Neo/Widgets/UserIntro',['CSS'])
+
+mixin Widget-UserIntro(user)
+    .Neo.UserIntro.NeoWidget
+        if user.avatar
+            img.avatar(src=user.avatar)
+        h2.userName
+            a(href=user.url)= user.name
+        .intro= user.data.intro || user.data.announcement
+        .socialLinks
+            each val,key in user.data.socialLinks
+                a.link(href=val.url,alt=key)
+                    i(class=val['fa-icon'])
+        div
+            a.p8(href=file('feed.xml'))!= plugin.load_svg('kde-rss')+' RSS'
