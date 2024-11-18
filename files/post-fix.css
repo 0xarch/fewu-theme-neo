@@ -6,6 +6,18 @@ h5 { font-size:1.5em }
 h6 { font-size:1.4em }
 h1,h2,h3,h4,h5,h6 { margin: .5em 0 }
 img { max-width: 100% }
+pre code, pre code.hljs{
+    display: block;
+    padding: .5rem;
+    font-family: 'Hack',monospace,'monospace';
+    background-color: var(--Cbg);
+    color: var(--Cdisplay);
+    border-radius: .5rem;
+    padding-left: 2.5rem;
+    position: relative;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
 pre code.hljs {
 transition-property: padding, background-color, color;
 transition-duration: .25s;
@@ -13,6 +25,24 @@ transition-timing-function: ease-in-out;
 box-sizing: border-box;
 max-width: 100%;
 overflow-x: auto;
+padding-left: 2.5rem;
+}
+pre code>.line-index {
+    color: light-dark(#0000004d,#ffffff4d);
+    user-select: none;
+    position: absolute;
+    left: .5rem;
+    top: .5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1.5rem;
+}
+pre code>.line-index>i{
+    height: 1.5rem;
+    display: block;
+    font-style: normal;
+    font-size: .875rem;
 }
 blockquote{
 margin: 4px;
