@@ -13,7 +13,8 @@ html
         title= __title__(i18n('Posts'),user.name)
     body(OCP='OVERRIDE') 
         +NavigationBar
-        +PageLabel(i18n('Posts') + i18n('Page '+cycling.now))
+        //- +PageLabel(i18n('Posts') + i18n('Page '+cycling.now))
+        br
         main.uWcon.withSide
             .sideCon
                 +Widget-UserIntro(user)
