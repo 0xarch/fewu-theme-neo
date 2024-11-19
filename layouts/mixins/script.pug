@@ -6,6 +6,7 @@
     function declareComponent(location,types){ 
         __COMPONENTS[location] = types
     }
+- plugin.refreshSvg()
 mixin useComponent(location)
     if __COMPONENTS[location]
         if __COMPONENTS[location].includes('CSS')
