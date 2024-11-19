@@ -5,8 +5,10 @@ mixin NavigationBar(options)
         - options = {}
     header.Neo.NavigationBar(class=options.transparent ? '--transparent' : '', style=options.foregroundColor ? '--fColor:'+options.foregroundColor : '')
         a.smooth-navigated.kLogo(href=file())
-            != (user.data && user.data.logo) ? user.data.logo : fewu.logo()
-            != theme.logoText
+            .home-icon!= plugin.getSvg('material-symbols:home-outline-rounded')
+            .text
+                != (user.data && user.data.logo) ? user.data.logo : fewu.logo()
+                != theme.logoText
         .toggle
             != plugin.load_svg('kde-menu')
         .kCon
