@@ -19,16 +19,16 @@ html(lang="zh")
             .post-meta
                 .meta-content
                     .pubDate.iconed
-                        i.icon!= plugin.getSvg('fa-calendar')
+                        i.icon!= plugin.getSvg('material-symbols:calendar-today-outline-rounded')
                         date= post.fuzzyDate.toString('-')
                     .category.iconed
-                        i.icon!= plugin.getSvg('fa-book')
+                        i.icon!= plugin.getSvg('material-symbols:book-2-outline-rounded')
                         a.smooth-navigated(href=file('/tag/s'+post.category[0]+'/1/'))= post.category[0]
                             each val in post.category.slice(1)
                                 .hr
                                 a.smooth-navigated(href=file('/tag/s'+val+'/1/'))= val
                     .tag.iconed
-                        i.icon!= plugin.getSvg('fa-tag')
+                        i.icon!= plugin.getSvg('material-symbols:tag-rounded')
                         a.smooth-navigated(href=file('/tag/s'+post.tags[0]+'/1/'))= post.tags[0]
                         each val in post.tags.slice(1)
                             .hr
