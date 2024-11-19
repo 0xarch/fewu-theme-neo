@@ -6,6 +6,8 @@ mixin prelude(post)
             each v in post.property['highlight-languages'].split(" ")
                 script(src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/"+v+"min.js")
     link(rel="stylesheet",href=file("files/post-fix.css"))
+    if theme.enableAdmonitionCSS
+         link(rel="stylesheet",href=file("files/admon-extra.min.css"))
 
 mixin meta(post)
     link(rel="icon",href=file("files/icon.svg"))
