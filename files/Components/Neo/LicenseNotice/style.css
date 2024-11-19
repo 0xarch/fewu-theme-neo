@@ -40,11 +40,21 @@
     font-size: 1.25rem;
 }
 
+
 .Neo.LicenseNotice>.background {
     position: absolute;
     top: -25%;
     bottom: -25%;
     right: 0;
+}
+
+@media(max-width:768px){
+    .Neo.LicenseNotice>.background {
+        right: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+    }
 }
 
 .Neo.LicenseNotice>.background>svg {
