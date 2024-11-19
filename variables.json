@@ -1,4 +1,5 @@
 {
+    "enableAdmonitionCSS": false,
     "VERSION_NUMBER": "1.0.0",
     "verticalNavbar": false,
     "useDefaultCopyrightText": true,
