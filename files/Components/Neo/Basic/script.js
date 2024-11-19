@@ -1,16 +1,5 @@
-(function () {
-    let _M_ = false;['Android', 'iPhone', 'Mobi', 'webOS', 'iPod', 'BlackBerry'].forEach(v => navigator.userAgent.includes(v) && (_M_ = true));
-
-    const Q = (v, s) => v.querySelector(s),
-        D = document;
-    const debug = () => D.body.setAttribute('debug', 0);
-    const mobile = () => {
-        _M_ = !_M_; D.documentElement.setAttribute('isMobile', _M_);
-    }
-    D.documentElement.setAttribute('isMobile', _M_);
-    const { documentElement: root } = document;
-    if (navigator.userAgent.includes('Android')) root.classList.add('Android');
-    window.SINGLE_REM = parseInt(window.getComputedStyle(document.documentElement).fontSize);
+(()=>{
+window.SINGLE_REM=parseInt(window.getComputedStyle(document.documentElement).fontSize);
 })();
 
 (function (window, undefined) {
@@ -24,9 +13,9 @@
     const DOMParserI = new DOMParser();
     window.Reload = {
         goTo: async function (url,isBack = false) {
-            if(url != window.location.href) 
-                document.body.classList.add('being-replaced');
-            document.querySelector('.Neo.NavigationBar').classList.add('collapsed');
+            // if(url != window.location.href) 
+            //     document.body.classList.add('being-replaced');
+            document.querySelector('.Neo.NavigationBar').classList.remove('collapsed');
             let least_timer = new Promise(resolve => setTimeout(resolve, 150));
             let content = await (await fetch(url)).text();
             await least_timer;
@@ -168,7 +157,10 @@
             // scroll pos
             DoOthers();
             setTimeout(()=>{
-                window.scrollTo(0,0);
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             },0);
         }
     };
@@ -178,42 +170,25 @@ function DoOthers(){
     document.body.classList.remove('main-anim-finished');
     // TOC
     (async ()=>{
-        import('../../../es/KContentTable.js');
+        await import('../../../es/KContentTable.js');
         setTimeout(()=>{
-            console.log('GENERATING TABLE');
             ___KContentTable();
         },1);
     })();
     // NavigationBar
     const NAV_ROOT = document.querySelector('.Neo.NavigationBar');
     const NAV_BAR_TOGGLE = NAV_ROOT.querySelector('.toggle');
-    const NAV_BAR_CON = NAV_ROOT.querySelector('.kCon');
-    const NAVIGATION_LOGO_WIDTH = NAV_ROOT.querySelector('.kLogo').clientWidth;
-    const NAVIGATION_WIDTH = NAV_BAR_CON.clientWidth;
-    let expandedHeight = NAV_BAR_CON.childElementCount * 48 + 'px';
-    NAV_BAR_CON.style.setProperty('--expanded-height', expandedHeight);
-    const NavBarIntelliJudge = () => {
-        if (document.documentElement.clientWidth < NAVIGATION_WIDTH + NAVIGATION_LOGO_WIDTH + window.SINGLE_REM*4) {
-            NAV_ROOT.classList.add('collapsed', 'short');
-            NAV_ROOT.classList.remove('enough');
-        } else {
-            NAV_ROOT.classList.remove('collapsed', 'short');
-            NAV_ROOT.classList.add('enough');
-        }
-    }
-    window.addEventListener('resize', NavBarIntelliJudge);
     NAV_BAR_TOGGLE.addEventListener('click', () => {
         NAV_ROOT.classList.toggle('collapsed');
     });
-    NavBarIntelliJudge();
+    // Global Focus
     let lastKnownScrollPosition = 0;
     let ticking = false;
-
     function NavFloatToggle(scrollPos) {
-        if(scrollPos >= 240) {
-            NAV_ROOT.classList.add('float');
+        if(scrollPos >= visualViewport.height / 100 * 37.75 - 5.5*SINGLE_REM) {
+            document.body.classList.add('focus');
         } else {
-            NAV_ROOT.classList.remove('float');
+            document.body.classList.remove('focus');
         }
     }
     document.addEventListener("scroll", () => {
@@ -258,7 +233,7 @@ function DoOthers(){
     setTimeout(()=>{
         document.body.classList.remove('main-anim');
         document.body.classList.add('main-anim-finished');
-    },500);
+    },350);
     // search
     const Q=(v,s)=>v.querySelector(s);
     function Search() {
@@ -302,7 +277,10 @@ function DoOthers(){
 }
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(()=>{
-        window.scrollTo(0,0);
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     },0);
     DoOthers();
     const NAV_ROOT = document.querySelector('.Neo.NavigationBar');
@@ -311,3 +289,6 @@ document.addEventListener('DOMContentLoaded', () => {
         NAV_ROOT.classList.remove('anim')
     },500);
 })
+window.addEventListener('load',()=>{
+document.body.classList.add('loaded');
+});
