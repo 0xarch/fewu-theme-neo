@@ -48,6 +48,7 @@ pre>.line-index>i{
     display: block;
     font-style: normal;
     font-size: .875rem;
+    line-height: 1.5rem;
 }
 blockquote{
 margin: 4px;

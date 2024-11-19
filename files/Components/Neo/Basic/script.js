@@ -241,8 +241,9 @@ function DoOthers(){
         if(window.hljs){
             hljs.highlightAll();
         }
-        document.querySelectorAll('#markdown_fillContent pre code').forEach(element => {
-            let con = document.createElement('div'), len = element.textContent.split("\n").length;
+        document.querySelectorAll('#markdown_fillContent pre').forEach(element => {
+            let code = element.querySelector('code');
+            let con = document.createElement('div'), len = code.textContent.split("\n").length;
             con.classList.add('line-index');
             for(let i = 1;i<len;i++){
                 let index_el = document.createElement('i');
