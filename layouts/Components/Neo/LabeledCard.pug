@@ -1,0 +1,15 @@
+- declareComponent('Neo/LabeledCard',['CSS'])
+
+mixin LabeledCard(post,config)
+    - config = config || {}
+    - let showYear = config.showYear || false
+    - let showTag = config.showTag || true
+    a.smooth-navigated.Neo.LabeledCard(href=file(post.path.website))
+        date
+            = !showYear ? post.fuzzyDate.m + '-' + post.fuzzyDate.d : post.fuzzyDate.toString('-')
+        .string
+        .title= post.title
+        .append
+            if showTag
+                each v in post.tags
+                    .tag= '#' + v

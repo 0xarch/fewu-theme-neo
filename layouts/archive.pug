@@ -4,26 +4,37 @@ html
     head 
         +meta(user.note,i18n('Archives'))
         +useComponent('Neo/Basic')
-        +useComponent('Neo/PageNavigator')
-        +useComponent('Neo/NavigationBar')
         +useComponent('Neo/Footer')
+        +useComponent('Neo/LabeledCard')
+        +useComponent('Neo/NavigationBar')
+        +useComponent('Neo/PageNavigator')
+        +useComponent('Neo/SearchComp')
+        +useComponent('Neo/Widgets/UserIntro')
+        +useComponent('Neo/Widgets/CateList')
+        +useComponent('Neo/Widgets/TagList')
         title= __title__(i18n('Archives'),user.name)
     body(OCP='OVERRIDE') 
         +NavigationBar
-        +PageLabel(i18n('Archives'))
-        main.uWcon
-            - let used_year = []
-            - let y = {}
-            each bid in cycling.value
-                - let post = ID[bid]
-                if !used_year.includes(post.datz.y)
-                    - y[post.datz.y] = []
-                    - used_year.push(post.datz.y)
-                - y[post.datz.y].push(bid)
-            each v,k in y
-                h2= k
-                ul.cPostCon
-                    each item in v
-                        +SinglePost(IDMap.get(item))
-            +PageNavigator(cycling.total,cycling.now,'archive')
+        main.uWcon.withSide.no-anim
+            .sideCon
+                +Widget-UserIntro(user)
+                +Widget-CateList
+                +Widget-TagList
+            .mainCon#NEO_REPLACE
+                .NeoWidget
+                    - let used_year = []
+                    - let y = {}
+                    each bid in cycling.value
+                        - let post = ID[bid]
+                        if !used_year.includes(post.datz.y)
+                            - y[post.datz.y] = []
+                            - used_year.push(post.datz.y)
+                        - y[post.datz.y].push(bid)
+                    each v,k in y
+                        h2.archive-label
+                            .year=k
+                        ul.cPostCon
+                            each item in v
+                                +LabeledCard(IDMap.get(item))
+                +PageNavigator(cycling.total,cycling.now,'archive')
         +Footer

@@ -10,15 +10,18 @@ html
         +useComponent('Neo/SearchComp')
         +useComponent('Neo/PostCard')
         +useComponent('Neo/Widgets/UserIntro')
+        +useComponent('Neo/Widgets/CateList')
+        +useComponent('Neo/Widgets/TagList')
         title= __title__(i18n('Posts'),user.name)
     body(OCP='OVERRIDE') 
         +NavigationBar
-        //- +PageLabel(i18n('Posts') + i18n('Page '+cycling.now))
         br
-        main.uWcon.withSide
+        main.uWcon.withSide.no-anim
             .sideCon
                 +Widget-UserIntro(user)
-            .mainCon
+                +Widget-CateList
+                +Widget-TagList
+            .mainCon#NEO_REPLACE
                 ul.cPostCon
                     +PostCard(IDMap.get(sort.defaultOrder[10*(cycling.now-1)]))
                     each bid in sort.defaultOrder.slice(10*(cycling.now-1)+1,10*(cycling.now))

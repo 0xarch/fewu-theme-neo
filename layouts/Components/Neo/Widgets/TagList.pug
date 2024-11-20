@@ -1,0 +1,8 @@
+- declareComponent('Neo/Widgets/TagList',['CSS'])
+
+mixin Widget-TagList()
+    .Neo.NeoWidget.TagList
+        h2= i18n('Tags')
+        .tags-container
+            each v in site.tags
+                a.smooth-navigated.tag(href=file(`/tag/s${v.tagname}/1/index.html`))= v.tagname

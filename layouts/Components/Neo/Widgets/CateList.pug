@@ -1,0 +1,8 @@
+- declareComponent('Neo/Widgets/CateList',['CSS'])
+
+mixin Widget-CateList()
+    .Neo.NeoWidget.CateList
+        h2= i18n('Categories')
+        .cates-container
+            each v in site.categories
+                a.smooth-navigated.cate(data-count=v.included.length,href=file(`/category/s${v.catename}/1/index.html`))= v.catename

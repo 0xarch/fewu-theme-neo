@@ -13,16 +13,16 @@ mixin PostCard(item)
                         date= item.fuzzyDate.toString('-')
                     .category.iconed
                         i.icon!= plugin.getSvg('material-symbols:book-2-outline-rounded')
-                        a.smooth-navigated(href=file('/tag/s'+item.category[0]+'/1/'))= item.category[0]
+                        a.smooth-navigated(href=file('/category/s'+item.category[0]+'/1/index.html'))= item.category[0]
                             each val in item.category.slice(1)
                                 .hr
-                                a.smooth-navigated(href=file('/tag/s'+val+'/1/'))= val
+                                a.smooth-navigated(href=file('/category/s'+val+'/1/index.html'))= val
                     .tag.iconed
                         i.icon!= plugin.getSvg('material-symbols:tag-rounded')
-                        a.smooth-navigated(href=file('/tag/s'+item.tags[0]+'/1/'))= item.tags[0]
+                        a.smooth-navigated(href=file('/tag/s'+item.tags[0]+'/1/index.html'))= item.tags[0]
                         each val in item.tags.slice(1)
                             .hr
-                            a.smooth-navigated(href=file('/tag/s'+val+'/1/'))= val
+                            a.smooth-navigated(href=file('/tag/s'+val+'/1/index.html'))= val
             .foreword!= item.foreword
             .length
                 - let evlTime = Math.ceil(item.wordCount/250)

@@ -11,38 +11,47 @@ html(lang="zh")
         +useComponent('Neo/Footer')
         +useComponent('Neo/LicenseNotice')
         +useComponent('Neo/NavigationBar')
+        +useComponent('Neo/SearchComp')
+        +useComponent('Neo/Widgets/UserIntro')
+        +useComponent('Neo/Widgets/CateList')
+        +useComponent('Neo/Widgets/TagList')
         title= __title__(post.title,'read')
     body.colorful(OCP='OVERRIDE',style='--color1:'+Plugin.getColorByString(post.foreword).toHex()+';--color2:'+Plugin.getColorByString(post.parsed.foreword).toHex())
         +NavigationBar
-        br
-        main.uWcon.NeoWidget
-            .post-meta
-                .meta-content
-                    .pubDate.iconed
-                        i.icon!= plugin.getSvg('material-symbols:calendar-today-outline-rounded')
-                        date= post.fuzzyDate.toString('-')
-                    .category.iconed
-                        i.icon!= plugin.getSvg('material-symbols:book-2-outline-rounded')
-                        a.smooth-navigated(href=file('/tag/s'+post.category[0]+'/1/'))= post.category[0]
-                            each val in post.category.slice(1)
-                                .hr
-                                a.smooth-navigated(href=file('/tag/s'+val+'/1/'))= val
-                    .tag.iconed
-                        i.icon!= plugin.getSvg('material-symbols:tag-rounded')
-                        a.smooth-navigated(href=file('/tag/s'+post.tags[0]+'/1/'))= post.tags[0]
-                        each val in post.tags.slice(1)
-                            .hr
-                            a.smooth-navigated(href=file('/tag/s'+val+'/1/'))= val
-            unless post.old == true
-                section
-                    h2= i18n('Foreword')
-                    != post.parsed.foreword
-            article#markdown_fillContent
-                if post.old == true
-                    != post.parsed.foreword
-                != post.parsed.content
-            +LicenseNotice(post)
-            br
-            +KNextPage
+        main.uWcon.withSide.no-anim
+            .sideCon
+                +Widget-UserIntro(user)
+                +Widget-CateList
+                +Widget-TagList
+            .mainCon#NEO_REPLACE
+                .post-main.NeoWidget
+                    .post-meta
+                        .meta-content
+                            .pubDate.iconed
+                                i.icon!= plugin.getSvg('material-symbols:calendar-today-outline-rounded')
+                                date= post.fuzzyDate.toString('-')
+                            .category.iconed
+                                i.icon!= plugin.getSvg('material-symbols:book-2-outline-rounded')
+                                a.smooth-navigated(href=file('/category/s'+post.category[0]+'/1/index.html'))= post.category[0]
+                                    each val in post.category.slice(1)
+                                        .hr
+                                        a.smooth-navigated(href=file('/category/s'+val+'/1/index.html'))= val
+                            .tag.iconed
+                                i.icon!= plugin.getSvg('material-symbols:tag-rounded')
+                                a.smooth-navigated(href=file('/tag/s'+post.tags[0]+'/1/index.html'))= post.tags[0]
+                                each val in post.tags.slice(1)
+                                    .hr
+                                    a.smooth-navigated(href=file('/tag/s'+val+'/1/index.html'))= val
+                    unless post.old == true
+                        section
+                            h2= i18n('Foreword')
+                            != post.parsed.foreword
+                    article#markdown_fillContent
+                        if post.old == true
+                            != post.parsed.foreword
+                        != post.parsed.content
+                    +LicenseNotice(post)
+                br
+                +KNextPage
         +Footer
         +KContentTable

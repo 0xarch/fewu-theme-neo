@@ -50,7 +50,7 @@
             "option": {
                 "@split": {
                     "parent": "sort.defaultOrder",
-                    "every": 10
+                    "every": 20
                 }
             }
         },

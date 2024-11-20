@@ -3,24 +3,26 @@ doctype html
 html(lang="zh")
     head
         +meta(user.note,user.keyword||'')
-        +use('KUserIntro')
         +useComponent('Neo/Basic')
-        +useComponent('Neo/NavigationBar')
         +useComponent('Neo/Footer')
+        +useComponent('Neo/NavigationBar')
         +useComponent('Neo/SearchComp')
         +useComponent('Neo/PostCard')
         +useComponent('Neo/Widgets/UserIntro')
+        +useComponent('Neo/Widgets/CateList')
+        +useComponent('Neo/Widgets/TagList')
         if sort.defaultOrder.length>10
             +useComponent('Neo/PageNavigator')
         title= __title__(i18n('Home'),user.name)
     body(OCP='OVERRIDE')
         +NavigationBar
-        //- +KUserIntro
         br
-        main.uWcon.withSide
+        main.uWcon.withSide.no-anim
             .sideCon
                 +Widget-UserIntro(user)
-            .mainCon
+                +Widget-CateList
+                +Widget-TagList
+            .mainCon#NEO_REPLACE
                 ul.cPostCon
                     +PostCard(IDMap.get(sort.defaultOrder[0]))
                     each bid in sort.defaultOrder.slice(1,10)

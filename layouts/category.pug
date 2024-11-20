@@ -7,14 +7,23 @@ html
         +useComponent('Neo/Basic')
         +useComponent('Neo/Footer')
         +useComponent('Neo/NavigationBar')
+        +useComponent('Neo/SearchComp')
         +useComponent('Neo/PageNavigator')
+        +useComponent('Neo/PostCard')
+        +useComponent('Neo/Widgets/UserIntro')
+        +useComponent('Neo/Widgets/CateList')
+        +useComponent('Neo/Widgets/TagList')
         title= __title__(i18n('Categories'),user.name)
     body.new(OCP='OVERRIDE')
         +NavigationBar
-        +PageLabel(i18n('Categories'))
-        main.uWcon
-            .cSortCon
-                each item in cycling.value
-                    +SingleSort(item.value,'category')
-            +PageNavigator(cycling.total,cycling.now,'category')
+        main.uWcon.withSide.no-anim
+            .sideCon
+                +Widget-UserIntro(user)
+                +Widget-CateList
+                +Widget-TagList
+            .mainCon#NEO_REPLACE
+                .cSortCon.NeoWidget
+                    each item in cycling.value
+                        +SingleSort(item.value,'category')
+                +PageNavigator(cycling.total,cycling.now,'category')
         +Footer

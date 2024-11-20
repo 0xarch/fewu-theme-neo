@@ -9,7 +9,7 @@ mixin Widget-UserIntro(user)
         .intro= user.data.intro || user.data.announcement
         .socialLinks
             each val,key in user.data.socialLinks
-                a.link(href=val.url,alt=key)
+                a.link(href=val.url,title=key)
                     i(class=val['fa-icon'])
-        div
-            a.p8(href=file('feed.xml'))!= plugin.load_svg('kde-rss')+' RSS'
+            a.link(href=file('feed.xml'),title='RSS Feed')!= plugin.getSvg('kde-rss')
+            

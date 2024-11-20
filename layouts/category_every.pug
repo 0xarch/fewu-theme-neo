@@ -4,16 +4,26 @@ html
     head 
         +meta(user.note,varias.name)
         +useComponent('Neo/Basic')
+        +useComponent('Neo/Footer')
+        +useComponent('Neo/LabeledCard')
         +useComponent('Neo/NavigationBar')
         +useComponent('Neo/PageNavigator')
-        +useComponent('Neo/Footer')
+        +useComponent('Neo/SearchComp')
+        +useComponent('Neo/Widgets/UserIntro')
+        +useComponent('Neo/Widgets/CateList')
+        +useComponent('Neo/Widgets/TagList')
         title= __title__(varias.name,user.name)
     body(OCP='OVERRIDE')
         +NavigationBar
-        +PageLabel(i18n('Category')+' - '+varias.name)
-        main.uWcon
-            ul.cPostCon
-                each bid in cycling.value
-                    +SinglePost(IDMap.get(+bid))
+        main.uWcon.withSide.no-anim
+            .sideCon
+                +Widget-UserIntro(user)
+                +Widget-CateList
+                +Widget-TagList
+            .mainCon#NEO_REPLACE
+                .NeoWidget
+                    h2.category-name= varias.name
+                    each bid in cycling.value
+                        +LabeledCard(IDMap.get(+bid))
                 +PageNavigator(cycling.total,cycling.now,'category/s'+varias.name)
         +Footer

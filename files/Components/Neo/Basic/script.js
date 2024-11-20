@@ -1,9 +1,9 @@
-(()=>{
+((window)=>{
 window.SINGLE_REM=parseInt(window.getComputedStyle(document.documentElement).fontSize);
-})();
+globalThis.scrollToTop=()=>window.scrollTo({top:0,behavior:'smooth'});
+})(window);
 
 (function (window, undefined) {
-    window.___usedLocation = [window.location.href];
     window.passedLocation = [window.location.href];
     window.onpopstate = function(){
         passedLocation.pop();
@@ -13,20 +13,20 @@ window.SINGLE_REM=parseInt(window.getComputedStyle(document.documentElement).fon
     const DOMParserI = new DOMParser();
     window.Reload = {
         goTo: async function (url,isBack = false) {
-            // if(url != window.location.href) 
             document.body.classList.add('being-replaced');
+            scrollToTop();
+            let NEO_REPLACE_NODE = document.querySelector('#NEO_REPLACE');
             document.querySelector('.Neo.NavigationBar').classList.remove('collapsed');
-            let least_timer = new Promise(resolve => setTimeout(resolve, 150));
+            let least_timer = new Promise(resolve => setTimeout(resolve, 200));
             let content = await (await fetch(url)).text();
             await least_timer;
             let newDocument = DOMParserI.parseFromString(content, 'text/html');
             // set url
             if(!isBack) passedLocation.push(url);
             window.history[isBack ? 'replaceState' : 'pushState']('', '', url);
-            !___usedLocation.includes(url) && ___usedLocation.push(url);
             // process head.
             let newTitle = newDocument.head.querySelector('title').innerHTML;
-            let scripts = [], styles = [], metas = [], links = [];
+            let metas = [], links = [];
             let unusedNodes = [];
             for (let childNode of newDocument.head.childNodes) {
                 if (childNode.nodeType !== 1) continue;
@@ -37,24 +37,6 @@ window.SINGLE_REM=parseInt(window.getComputedStyle(document.documentElement).fon
                             name: childNode.name,
                             content: childNode.content
                         });
-                        break;
-                    case 'STYLE':
-                        styles.push(childNode.innerHTML);
-                        break;
-                    case 'SCRIPT':
-                        if (childNode.src) {
-                            scripts.push({
-                                type: 'ref',
-                                module: childNode.type,
-                                content: childNode.getAttribute('src')
-                            });
-                        } else {
-                            scripts.push({
-                                type: 'inner',
-                                module: childNode.type,
-                                content: childNode.innerHTML
-                            });
-                        }
                         break;
                     case 'LINK':
                         links.push({
@@ -70,40 +52,11 @@ window.SINGLE_REM=parseInt(window.getComputedStyle(document.documentElement).fon
                     case 'TITLE':
                         childNode.textContent = newTitle;
                         break;
-                    case 'STYLE':
-                        for (let i = 0; i < styles.length; i++) {
-                            if (childNode.innerHTML == styles[i]) {
-                                styles.splice(i, 1);
-                                break outer;
-                            }
-                        }
-                        unusedNodes.push(childNode);
-                        break;
                     case 'LINK':
                         for (let i = 0; i < links.length; i++) {
                             if (childNode.rel == links[i].rel && childNode.href == links[i].href) {
-                                styles.splice(i, 1);
+                                links.splice(i, 1);
                                 break outer;
-                            }
-                        }
-                        unusedNodes.push(childNode);
-                        break;
-                    case 'SCRIPT':
-                        if (!childNode.src) {
-                            for (let i = 0; i < scripts.length; i++) {
-                                if (scripts[i].type !== 'inner') continue;
-                                if (childNode.type == scripts[i].module && childNode.innerHTML == scripts[i].content) {
-                                    scripts.splice(i, 1);
-                                    break outer;
-                                }
-                            }
-                        } else {
-                            for (let i = 0; i < scripts.length; i++) {
-                                if (scripts[i].type !== 'ref') continue;
-                                if (childNode.type == scripts[i].module && childNode.getAttribute('src') == scripts[i].content) {
-                                    scripts.splice(i, 1);
-                                    break outer;
-                                }
                             }
                         }
                         unusedNodes.push(childNode);
@@ -132,36 +85,25 @@ window.SINGLE_REM=parseInt(window.getComputedStyle(document.documentElement).fon
                 el.href = v.href;
                 document.head.appendChild(el);
             });
-            styles.forEach(v => {
-                let el = document.createElement('style');
-                el.innerHTML = v;
-                document.head.appendChild(el);
-            });
-            scripts.forEach(v => {
-                let el = document.createElement('script');
-                if (v.type == 'ref') {
-                    el.type = v.module;
-                    el.src = v.content;
-                } else {
-                    el.type = v.module;
-                    el.innerHTML = v.content;
-                }
-                document.head.appendChild(el);
-            });
             unusedNodes.forEach(el => el.remove());
             // process body
             document.body.classList.add('not-ready');
             document.body.classList.remove('being-replaced');
-            document.body.innerHTML = newDocument.body.innerHTML;
+            let NEW_NEO_REPLACE_NODE = newDocument.querySelector('#NEO_REPLACE');
+            if(NEO_REPLACE_NODE && NEW_NEO_REPLACE_NODE){
+                // new #NEO_REPLACE
+                NEO_REPLACE_NODE.innerHTML = NEW_NEO_REPLACE_NODE.innerHTML;
+                // NEO_REPLACE_NODE.style.setProperty('height','100%');
+            } else {
+                console.log('USING LEGACY SWITCH');
+                document.body.innerHTML = newDocument.body.innerHTML;
+            }
             document.body.classList.remove('not-ready');
             // scroll pos
             DoOthers();
-            setTimeout(()=>{
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            },0);
+            // setTimeout(()=>{
+            //     scrollToTop();
+            // },0);
         }
     };
 })(window, void 0);
@@ -276,12 +218,7 @@ function DoOthers(){
     Search();
 }
 document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(()=>{
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    },0);
+    setTimeout(scrollToTop,0);
     DoOthers();
     const NAV_ROOT = document.querySelector('.Neo.NavigationBar');
     NAV_ROOT.classList.add('anim');
