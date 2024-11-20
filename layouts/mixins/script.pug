@@ -7,10 +7,13 @@
         __COMPONENTS[location] = types
     }
 - plugin.refreshSvg()
+- let css_id = 0
 mixin useComponent(location)
     if __COMPONENTS[location]
         if __COMPONENTS[location].includes('CSS')
-            link(rel='stylesheet',href=linkPrefix('files/Components/'+location+'/style.css'))
+            link(data-id=css_id++,rel='stylesheet',href=linkPrefix('files/Components/'+location+'/style.css'))
+        if __COMPONENTS[location].includes('CSS_ACROSS')
+            link(data-id=css_id++,data-across='1',rel='stylesheet',href=linkPrefix('files/Components/'+location+'/style.css'))
         if __COMPONENTS[location].includes('JS')
             script(src=linkPrefix('files/Components/'+location+'/script.js'))
         if __COMPONENTS[location].includes('ES')
