@@ -78,7 +78,7 @@
                 },
                 "@split": {
                     "parent": "each.value.included",
-                    "every": 5
+                    "every": 15
                 }
             }
         },
@@ -106,7 +106,7 @@
                 },
                 "@split": {
                     "parent": "each.value.included",
-                    "every": 5
+                    "every": 15
                 }
             }
         },

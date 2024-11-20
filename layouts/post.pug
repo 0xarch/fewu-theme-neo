@@ -27,17 +27,17 @@ html(lang="zh")
                 .post-main.NeoWidget
                     .post-meta
                         .meta-content
-                            .pubDate.iconed
-                                i.icon!= plugin.getSvg('material-symbols:calendar-today-outline-rounded')
+                            .pubDate
+                                i.iconBlock!= plugin.getSvg('material-symbols:calendar-today-outline-rounded')
                                 date= post.fuzzyDate.toString('-')
-                            .category.iconed
-                                i.icon!= plugin.getSvg('material-symbols:book-2-outline-rounded')
+                            .category
+                                i.iconBlock!= plugin.getSvg('material-symbols:book-2-outline-rounded')
                                 a.smooth-navigated(href=file('/category/s'+post.category[0]+'/1/index.html'))= post.category[0]
                                     each val in post.category.slice(1)
                                         .hr
                                         a.smooth-navigated(href=file('/category/s'+val+'/1/index.html'))= val
-                            .tag.iconed
-                                i.icon!= plugin.getSvg('material-symbols:tag-rounded')
+                            .tag
+                                i.iconBlock!= plugin.getSvg('material-symbols:tag-rounded')
                                 a.smooth-navigated(href=file('/tag/s'+post.tags[0]+'/1/index.html'))= post.tags[0]
                                 each val in post.tags.slice(1)
                                     .hr
@@ -51,7 +51,16 @@ html(lang="zh")
                             != post.parsed.foreword
                         != post.parsed.content
                     +LicenseNotice(post)
-                br
-                +KNextPage
+                .Neo.NextPage
+                    - let earliest = post.nextID?false:true
+                    - let latest = post.prevID?false:true
+                    - let __prev = IDMap.get(post.prevID)
+                    - let __next = IDMap.get(post.nextID)
+                    a.smooth-navigated.left(href=!latest&&file(__prev.path.website),class=latest?'disabled':'')
+                        .arrow!= plugin.getSvg('material-symbols:chevron-right-rounded')
+                        .title= latest?i18n('Already latest'):__prev.title
+                    a.smooth-navigated.right(href=!earliest&&file(__next.path.website),class=earliest?'disabled':'')
+                        .title= earliest?i18n('Already earliest'):__next.title
+                        .arrow!= plugin.getSvg('material-symbols:chevron-right-rounded')
         +Footer
         +KContentTable

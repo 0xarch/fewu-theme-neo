@@ -18,7 +18,6 @@ mixin NavigationBar(options)
             each v in (theme.extraNavigations||[])
                 a(href=file(v[0]))= i18n(v[1])
             if db.config.module && db.config.module.enable && db.config.module.enable.includes && db.config.module.enable.includes('search')
-                +useComponent('Neo/SearchComp')
                 +SearchComp
         if db.config.module && db.config.module.enable && db.config.module.enable.includes && db.config.module.enable.includes('search')
             +SearchComp_Panel
