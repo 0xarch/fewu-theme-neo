@@ -1,5 +1,3 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/brands.min.css");
-@import url("https://cdn.jsdelivr.net/npm/roboto-font@0.1.0/css/fonts.min.css");
 :root {
 color-scheme: light dark;
 --hue: var(--configHue, 250);
