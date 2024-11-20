@@ -1,29 +1,25 @@
 - declareComponent('Neo/PageNavigator',['CSS'])
 
 mixin PageNavigator(total,now,name)
-    ul.Neo.PageNavigator
+    .Neo.PageNavigator
         - let disable_all = total==1
         - let enable_prev = !disable_all&&now!=1
         - let enable_next = !disable_all&&now!=total
         - let limit_front = now ==1 ? 1 :now >= 3 ? now - 2 : 1
         - let limit_end = now == total ? total : now + 2 < total ? now + 2 : total
+        a.smooth-navigated.prev(href=enable_prev?file(`/${name}/${now-1}`):undefined)!= plugin.getSvg('material-symbols:chevron-right-rounded')
         if now >= 3
-            li
-                a(href=file(`/${name}/1`))= 1
+            a.smooth-navigated(href=file(`/${name}/1`))= 1
         if now > 3
-            li
-                a.disabled ...
+            a.smooth-navigated.disabled ...
         - let iter_num = limit_front
         while iter_num <= limit_end
             if iter_num!=now
-                li
-                    a(href=file(`/${name}/${iter_num}`))= iter_num++
+                a.smooth-navigated(href=file(`/${name}/${iter_num}`))= iter_num++
             else
-                li.now
-                    a= iter_num++
+                a.smooth-navigated.now= iter_num++
         if total - now > 3
-            li
-                a.disabled ...
+            a.smooth-navigated.disabled ...
         if total - now >=3
-            li
-                a(href=file(`/${name}/${total}`))= total
+            a.smooth-navigated(href=file(`/${name}/${total}`))= total
+        a.smooth-navigated.next(href=enable_next?file(`/${name}/${now+1}`):undefined)!= plugin.getSvg('material-symbols:chevron-right-rounded')
