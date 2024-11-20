@@ -14,7 +14,7 @@ window.SINGLE_REM=parseInt(window.getComputedStyle(document.documentElement).fon
     window.Reload = {
         goTo: async function (url,isBack = false) {
             // if(url != window.location.href) 
-            //     document.body.classList.add('being-replaced');
+            document.body.classList.add('being-replaced');
             document.querySelector('.Neo.NavigationBar').classList.remove('collapsed');
             let least_timer = new Promise(resolve => setTimeout(resolve, 150));
             let content = await (await fetch(url)).text();
