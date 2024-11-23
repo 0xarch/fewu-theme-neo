@@ -24,9 +24,9 @@ html
                     +Widget-TagList
             .mainCon#NEO_REPLACE
                 ul.cPostCon
-                    +PostCard(IDMap.get(sort.defaultOrder[10*(cycling.now-1)]))
-                    each bid in sort.defaultOrder.slice(10*(cycling.now-1)+1,10*(cycling.now))
+                    +PostCard(IDMap.get(sort.defaultOrder[10*(split.now-1)]))
+                    each bid in sort.defaultOrder.slice(10*(split.now-1)+1,10*(split.now))
                         br
                         +PostCard(IDMap.get(bid))
-                +PageNavigator(cycling.total,cycling.now,'page')
+                +PageNavigator(split.total,split.now,'page')
         +Footer

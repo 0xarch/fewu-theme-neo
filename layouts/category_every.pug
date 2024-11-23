@@ -2,7 +2,7 @@ include /mixins/script.pug
 doctype html
 html 
     head 
-        +meta(user.note,varias.name)
+        +meta(user.note,each.name)
         +useComponent('Neo/Basic')
         +useComponent('Neo/Footer')
         +useComponent('Neo/LabeledCard')
@@ -12,7 +12,7 @@ html
         +useComponent('Neo/Widgets/UserIntro')
         +useComponent('Neo/Widgets/CateList')
         +useComponent('Neo/Widgets/TagList')
-        title= __title__(varias.name,user.name)
+        title= __title__(each.name,user.name)
     body(OCP='OVERRIDE')
         +NavigationBar
         main.uWcon.withSide.no-anim
@@ -23,8 +23,8 @@ html
                     +Widget-TagList
             .mainCon#NEO_REPLACE
                 .NeoWidget
-                    h2.category-name= varias.name
-                    each bid in cycling.value
+                    h2.category-name= each.name
+                    each bid in split.value
                         +LabeledCard(IDMap.get(+bid))
-                +PageNavigator(cycling.total,cycling.now,'category/s'+varias.name)
+                +PageNavigator(split.total,split.now,'category/s'+each.name)
         +Footer

@@ -43,10 +43,6 @@ html(lang="zh")
                                 each val in post.tags.slice(1)
                                     .hr
                                     a.smooth-navigated(href=file('/tag/s'+val+'/1/index.html'))= val
-                    unless post.old == true
-                        section
-                            h2= i18n('Foreword')
-                            != post.parsed.foreword
                     article#markdown_fillContent
                         if post.old == true
                             != post.parsed.foreword

@@ -25,7 +25,7 @@ html
                 .NeoWidget
                     - let used_year = []
                     - let y = {}
-                    each bid in cycling.value
+                    each bid in split.value
                         - let post = ID[bid]
                         if !used_year.includes(post.datz.y)
                             - y[post.datz.y] = []
@@ -37,5 +37,5 @@ html
                         ul.cPostCon
                             each item in v
                                 +LabeledCard(IDMap.get(item))
-                +PageNavigator(cycling.total,cycling.now,'archive')
+                +PageNavigator(split.total,split.now,'archive')
         +Footer

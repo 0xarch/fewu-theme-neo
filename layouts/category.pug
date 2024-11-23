@@ -24,7 +24,7 @@ html
                     +Widget-TagList
             .mainCon#NEO_REPLACE
                 .cSortCon.NeoWidget
-                    each item in cycling.value
+                    each item in split.value
                         +SingleSort(item.value,'category')
-                +PageNavigator(cycling.total,cycling.now,'category')
+                +PageNavigator(split.total,split.now,'category')
         +Footer

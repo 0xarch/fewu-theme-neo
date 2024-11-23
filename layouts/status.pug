@@ -22,12 +22,14 @@ html
             .mainCon#NEO_REPLACE
                 .statusCon.NeoWidget
                     h1= i18n('Status')
-                    +Counter
                     h2= i18n('All categories')
                     .cSortCon
                         each i in site.used_categories
                             +SingleSort(site.categories[i],'category')
                     h2= i18n('All tags')
+                    .cSortCon
+                        each i in site.used_tags
+                            +SingleSort(site.tags[i],'tag')
                     h2= i18n('Local information')
                     small= i18n('@STAT_PRO_WARN')
                     section
