@@ -16,8 +16,9 @@ html
         main.uWcon.withSide.no-anim
             .sideCon
                 +Widget-UserIntro(user)
-                +Widget-CateList
-                +Widget-TagList
+                .stickyGroup
+                    +Widget-CateList
+                    +Widget-TagList
             .mainCon#NEO_REPLACE
                 .statusCon.NeoWidget
                     h1= i18n('Status')

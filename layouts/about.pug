@@ -18,8 +18,9 @@ html(lang="zh")
         main.uWcon.withSide.no-anim
             .sideCon
                 +Widget-UserIntro(user)
-                +Widget-CateList
-                +Widget-TagList
+                .stickyGroup
+                    +Widget-CateList
+                    +Widget-TagList
             .mainCon#NEO_REPLACE
                 article.NeoWidget
                     #markdown_fillContent.container!= post.parsed.content

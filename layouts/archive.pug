@@ -18,8 +18,9 @@ html
         main.uWcon.withSide.no-anim
             .sideCon
                 +Widget-UserIntro(user)
-                +Widget-CateList
-                +Widget-TagList
+                .stickyGroup
+                    +Widget-CateList
+                    +Widget-TagList
             .mainCon#NEO_REPLACE
                 .NeoWidget
                     - let used_year = []
