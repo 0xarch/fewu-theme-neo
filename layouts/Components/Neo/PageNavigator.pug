@@ -8,9 +8,8 @@ mixin PageNavigator(total,now,name)
         - let limit_front = now ==1 ? 1 :now >= 3 ? now - 2 : 1
         - let limit_end = now == total ? total : now + 2 < total ? now + 2 : total
         a.smooth-navigated.prev(href=enable_prev?file(`/${name}/${now-1}`):undefined)!= plugin.getSvg('material-symbols:chevron-right-rounded')
-        if now >= 3
-            a.smooth-navigated(href=file(`/${name}/1`))= 1
         if now > 3
+            a.smooth-navigated(href=file(`/${name}/1`))= 1
             a.smooth-navigated.disabled ...
         - let iter_num = limit_front
         while iter_num <= limit_end
