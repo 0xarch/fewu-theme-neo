@@ -16,7 +16,7 @@ mixin meta(post)
     meta(data-across='1',charset="utf-8")
     meta(data-across='1',name="viewport",content="width:device-width,initial-scale=1.0")
     meta(name="author",content=user.name)
-    meta(name="description",content=post.foreword)
+    meta(name="description",content=post.postIntroduction || post.foreword)
     meta(name="keywords",content=post.keywords.join(" "))
     meta(data-across='1',http-equiv="content-language",content=settings.language)
 
