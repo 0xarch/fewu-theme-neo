@@ -126,7 +126,7 @@
         {
             "name": "Part: Side Widgets",
             "from": "part-side-widgets.pug",
-            "to": "_neo/side-widgets"
+            "to": "neo/side-widgets"
         }
     ]
 }
