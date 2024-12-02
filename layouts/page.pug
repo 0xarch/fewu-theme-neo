@@ -3,25 +3,14 @@ doctype html
 html 
     head 
         +meta(user.note,i18n('Posts'))
-        +useComponent('Neo/Basic')
-        +useComponent('Neo/PageNavigator')
-        +useComponent('Neo/NavigationBar')
-        +useComponent('Neo/Footer')
-        +useComponent('Neo/SearchComp')
+        +useBasic
         +useComponent('Neo/PostCard')
-        +useComponent('Neo/Widgets/UserIntro')
-        +useComponent('Neo/Widgets/CateList')
-        +useComponent('Neo/Widgets/TagList')
         title= __title__(i18n('Posts'),user.name)
     body(OCP='OVERRIDE') 
         +NavigationBar
         br
         main.uWcon.withSide.no-anim
-            .sideCon
-                +Widget-UserIntro(user)
-                .stickyGroup
-                    +Widget-CateList
-                    +Widget-TagList
+            .sideCon#NEO_SIDE
             .mainCon#NEO_REPLACE
                 ul.cPostCon
                     +PostCard(IDMap.get(sort.defaultOrder[10*(split.now-1)]))

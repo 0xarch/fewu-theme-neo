@@ -5,22 +5,12 @@ html(lang="zh")
     head 
         +prelude(post)
         +meta(post)
-        +useComponent('Neo/Basic')
-        +useComponent('Neo/Footer')
-        +useComponent('Neo/NavigationBar')
-        +useComponent('Neo/SearchComp')
-        +useComponent('Neo/Widgets/UserIntro')
-        +useComponent('Neo/Widgets/CateList')
-        +useComponent('Neo/Widgets/TagList')
+        +useBasic
         title= __title__(post.title,'read')
     body.colorful(OCP='OVERRIDE',style='--bColor:'+plugin.getColorByString(post.content).toHex())
         +NavigationBar
         main.uWcon.withSide.no-anim
-            .sideCon
-                +Widget-UserIntro(user)
-                .stickyGroup
-                    +Widget-CateList
-                    +Widget-TagList
+            .sideCon#NEO_SIDE
             .mainCon#NEO_REPLACE
                 article.NeoWidget
                     #markdown_fillContent.container!= post.parsed.content

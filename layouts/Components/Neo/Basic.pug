@@ -1,1 +1,11 @@
 - declareComponent('Neo/Basic',['CSS_ACROSS','JS'])
+
+mixin useBasic()
+    +useComponent('Neo/Basic')
+    +useComponent('Neo/Footer')
+    +useComponent('Neo/NavigationBar')
+    +useComponent('Neo/SearchComp')
+    +useComponent('Neo/Widgets/UserIntro')
+    +useComponent('Neo/Widgets/CateList')
+    +useComponent('Neo/Widgets/TagList')
+    +useComponent('Neo/PageNavigator')

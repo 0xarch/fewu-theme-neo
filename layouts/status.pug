@@ -3,22 +3,12 @@ doctype html
 html
     head 
         +meta(user.note,user.keyword||'')
-        +useComponent('Neo/Basic')
-        +useComponent('Neo/Footer')
-        +useComponent('Neo/NavigationBar')
-        +useComponent('Neo/SearchComp')
-        +useComponent('Neo/Widgets/UserIntro')
-        +useComponent('Neo/Widgets/CateList')
-        +useComponent('Neo/Widgets/TagList')
+        +useBasic
         title= __title__(i18n('Status'),user.name)
     body(OCP='OVERRIDE')
         +NavigationBar
         main.uWcon.withSide.no-anim
-            .sideCon
-                +Widget-UserIntro(user)
-                .stickyGroup
-                    +Widget-CateList
-                    +Widget-TagList
+            .sideCon#NEO_SIDE
             .mainCon#NEO_REPLACE
                 .statusCon.NeoWidget
                     h1= i18n('Status')

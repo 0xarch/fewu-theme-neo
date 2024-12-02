@@ -4,24 +4,12 @@ doctype html
 html 
     head
         +meta(user.note,user.keyword||i18n('Tags'))
-        +useComponent('Neo/Basic')
-        +useComponent('Neo/Footer')
-        +useComponent('Neo/NavigationBar')
-        +useComponent('Neo/SearchComp')
-        +useComponent('Neo/PageNavigator')
-        +useComponent('Neo/PostCard')
-        +useComponent('Neo/Widgets/UserIntro')
-        +useComponent('Neo/Widgets/CateList')
-        +useComponent('Neo/Widgets/TagList')
+        +useBasic
         title= __title__(i18n('Tags'),user.name)
     body.new(OCP='OVERRIDE')
         +NavigationBar
         main.uWcon.withSide.no-anim
-            .sideCon
-                +Widget-UserIntro(user)
-                .stickyGroup
-                    +Widget-CateList
-                    +Widget-TagList
+            .sideCon#NEO_SIDE
             .mainCon#NEO_REPLACE
                 .cSortCon.NeoWidget
                     each item in split.value

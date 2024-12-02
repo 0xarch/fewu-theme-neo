@@ -122,6 +122,11 @@
             "addition": {
                 "post": "excluded_posts.about\\.md"
             }
+        },
+        {
+            "name": "Part: Side Widgets",
+            "from": "part-side-widgets.pug",
+            "to": ".template/side-widgets"
         }
     ]
 }

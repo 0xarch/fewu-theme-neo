@@ -5,25 +5,14 @@ html(lang="zh")
     head 
         +prelude(post)
         +meta(post)
+        +useBasic
         +use('KContentTable')
-        +use('KNextPage')
-        +useComponent('Neo/Basic')
-        +useComponent('Neo/Footer')
         +useComponent('Neo/LicenseNotice')
-        +useComponent('Neo/NavigationBar')
-        +useComponent('Neo/SearchComp')
-        +useComponent('Neo/Widgets/UserIntro')
-        +useComponent('Neo/Widgets/CateList')
-        +useComponent('Neo/Widgets/TagList')
         title= __title__(post.title,'read')
     body.colorful(OCP='OVERRIDE',style='--color1:'+Plugin.getColorByString(post.foreword).toHex()+';--color2:'+Plugin.getColorByString(post.parsed.foreword).toHex())
         +NavigationBar
         main.uWcon.withSide.no-anim
-            .sideCon
-                +Widget-UserIntro(user)
-                .stickyGroup
-                    +Widget-CateList
-                    +Widget-TagList
+            .sideCon#NEO_SIDE
             .mainCon#NEO_REPLACE
                 .post-main.NeoWidget
                     .post-meta

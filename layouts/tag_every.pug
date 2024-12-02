@@ -3,24 +3,13 @@ doctype html
 html 
     head 
         +meta(user.note,each.name)
-        +useComponent('Neo/Basic')
-        +useComponent('Neo/Footer')
+        +useBasic
         +useComponent('Neo/LabeledCard')
-        +useComponent('Neo/NavigationBar')
-        +useComponent('Neo/PageNavigator')
-        +useComponent('Neo/SearchComp')
-        +useComponent('Neo/Widgets/UserIntro')
-        +useComponent('Neo/Widgets/CateList')
-        +useComponent('Neo/Widgets/TagList')
         title= __title__(each.name,user.name)
     body(OCP='OVERRIDE')
         +NavigationBar
         main.uWcon.withSide.no-anim
-            .sideCon
-                +Widget-UserIntro(user)
-                .stickyGroup
-                    +Widget-CateList
-                    +Widget-TagList
+            .sideCon#NEO_SIDE
             .mainCon#NEO_REPLACE
                 .NeoWidget
                     h2.category-name= each.name

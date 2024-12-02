@@ -3,26 +3,14 @@ doctype html
 html(lang="zh")
     head
         +meta(user.note,user.keyword||'')
-        +useComponent('Neo/Basic')
-        +useComponent('Neo/Footer')
-        +useComponent('Neo/NavigationBar')
-        +useComponent('Neo/SearchComp')
+        +useBasic
         +useComponent('Neo/PostCard')
-        +useComponent('Neo/Widgets/UserIntro')
-        +useComponent('Neo/Widgets/CateList')
-        +useComponent('Neo/Widgets/TagList')
-        if sort.defaultOrder.length>10
-            +useComponent('Neo/PageNavigator')
         title= __title__(i18n('Home'),user.name)
     body(OCP='OVERRIDE')
         +NavigationBar
         br
         main.uWcon.withSide.no-anim
-            .sideCon
-                +Widget-UserIntro(user)
-                .stickyGroup
-                    +Widget-CateList
-                    +Widget-TagList
+            .sideCon#NEO_SIDE
             .mainCon#NEO_REPLACE
                 ul.cPostCon
                     +PostCard(IDMap.get(sort.defaultOrder[0]))
