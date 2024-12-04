@@ -41,7 +41,7 @@ pre {
     background-color: var(--Cbg);
 }
 pre>.line-index {
-    color: light-dark(#0000004d,#ffffff4d);
+    color: var(--Ctext-25);
     background-color: var(--Cbg);
     user-select: none;
     position: absolute;
@@ -82,6 +82,7 @@ overflow: auto;
 scrollbar-color: #0000 #0000;
 flex-wrap: wrap;
 gap: .5rem;
+&:not(:first-child){margin-top: .5rem}
 }
 .post-meta>.meta-content>.pubDate>date {
 padding: .375rem;
@@ -96,7 +97,7 @@ padding: .375rem;
     padding: .375rem;
     margin: 0 .125rem;
     border-radius: .375rem;
-    color: light-dark(#00000080, #ffffff80);
+    color: var(--Ctext-75);
     background-color: transparent;
     transition: background-color .25s ease-in-out,
                 color .25s ease-in-out;
