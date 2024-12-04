@@ -55,18 +55,6 @@
             }
         },
         {
-            "name": "Category Template",
-            "from": "category.pug",
-            "to": "category",
-            "use_split": true,
-            "option": {
-                "@split": {
-                    "parent": "site.categories",
-                    "every": 48
-                }
-            }
-        },
-        {
             "name": "Category (Each) Template",
             "from": "category_every.pug",
             "to": "category/s{{each.name}}",
@@ -79,18 +67,6 @@
                 "@split": {
                     "parent": "each.value.included",
                     "every": 15
-                }
-            }
-        },
-        {
-            "name": "Tag Template",
-            "from": "tag.pug",
-            "to": "tag",
-            "use_split": true,
-            "option": {
-                "@split": {
-                    "parent": "site.tags",
-                    "every": 48
                 }
             }
         },
@@ -127,6 +103,32 @@
             "name": "Part: Side Widgets",
             "from": "part-side-widgets.pug",
             "to": "neo/side-widgets"
+        }
+    ],
+    "@deprecated.layouts": [
+        {
+            "name": "Category Template",
+            "from": "category.pug",
+            "to": "category",
+            "use_split": true,
+            "option": {
+                "@split": {
+                    "parent": "site.categories",
+                    "every": 48
+                }
+            }
+        },
+        {
+            "name": "Tag Template",
+            "from": "tag.pug",
+            "to": "tag",
+            "use_split": true,
+            "option": {
+                "@split": {
+                    "parent": "site.tags",
+                    "every": 48
+                }
+            }
         }
     ]
 }
