@@ -177,4 +177,8 @@ color: var(--Cbtn-content);
 width: 1.25rem;
 height: 1.25rem;
 }
+&.plain{
+color: var(--Ctext-25);
+background: light-dark(#0000000d,ffffff0d);
+}
 }

@@ -28,7 +28,12 @@ block content
                         a.smooth-navigated(href=file('/tag/s'+val+'/1/index.html'))= val
             .meta-content
                 .wordCount
-                    span #{post.wordCount}#{i18n('Characters')}
+                    i.iconBlock.plain!= plugin.getSvg('material-symbols:notes-rounded')
+                    span #{post.wordCount} #{i18n('Characters')}
+                .readTime
+                    - let evlTime = Math.ceil(post.wordCount/250)
+                    i.iconBlock.plain!= plugin.getSvg('material-symbols:schedule-outline-rounded')
+                    span #{evlTime} #{i18n(evlTime==1?'Minute':'Minutes')}
     .post-main.NeoWidget
         article#markdown_fillContent
             if post.old == true

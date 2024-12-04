@@ -84,12 +84,12 @@ flex-wrap: wrap;
 gap: .5rem;
 &:not(:first-child){margin-top: .5rem}
 }
-.post-meta>.meta-content>.pubDate>date {
-padding: .375rem;
-}
-.post-meta>.meta-content>:is(.tag,.category,.pubDate) {
+.post-meta>.meta-content>* {
     display: flex;
     align-items: center;
+    &>:not(.iconBlock){
+        padding: .375rem;
+    }
 }
 .post-meta>.meta-content>:is(.tag,.category)>a {
     cursor: pointer;
