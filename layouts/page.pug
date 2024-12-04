@@ -1,21 +1,14 @@
-include /mixins/script.pug
-doctype html
-html 
-    head 
-        +meta(user.note,i18n('Posts'))
-        +useBasic
-        +useComponent('Neo/PostCard')
-        title= __title__(i18n('Posts'),user.name)
-    body(OCP='OVERRIDE') 
-        +NavigationBar
-        br
-        main.uWcon.withSide.no-anim
-            .sideCon#NEO_SIDE
-            .mainCon#NEO_REPLACE
-                ul.cPostCon
-                    +PostCard(IDMap.get(sort.defaultOrder[10*(split.now-1)]))
-                    each bid in sort.defaultOrder.slice(10*(split.now-1)+1,10*(split.now))
-                        br
-                        +PostCard(IDMap.get(bid))
-                +PageNavigator(split.total,split.now,'page')
-        +Footer
+extends /frame.pug
+
+append head
+    +meta(user.note,i18n('Posts'))
+    +useComponent('Neo/PostCard')
+    title= __title__(i18n('Posts'),user.name)
+
+block content
+    ul.cPostCon
+        +PostCard(IDMap.get(sort.defaultOrder[10*(split.now-1)]))
+        each bid in sort.defaultOrder.slice(10*(split.now-1)+1,10*(split.now))
+            br
+            +PostCard(IDMap.get(bid))
+    +PageNavigator(split.total,split.now,'page')

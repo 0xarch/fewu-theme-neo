@@ -1,19 +1,13 @@
-include /mixins/script.pug
-doctype html
-html 
-    head 
-        +meta(user.note,each.name)
-        +useBasic
-        +useComponent('Neo/LabeledCard')
-        title= __title__(each.name,user.name)
-    body(OCP='OVERRIDE')
-        +NavigationBar
-        main.uWcon.withSide.no-anim
-            .sideCon#NEO_SIDE
-            .mainCon#NEO_REPLACE
-                .NeoWidget
-                    h2.category-name= each.name
-                    each bid in split.value
-                        +LabeledCard(IDMap.get(+bid))
-                +PageNavigator(split.total,split.now,'category/s'+each.name)
-        +Footer
+extends /frame.pug
+
+append head
+    +meta(user.note,each.name)
+    +useComponent('Neo/LabeledCard')
+    title= __title__(each.name,user.name)
+
+block content
+    .NeoWidget
+        h2.category-name= each.name
+        each bid in split.value
+            +LabeledCard(IDMap.get(+bid))
+    +PageNavigator(split.total,split.now,'category/s'+each.name)

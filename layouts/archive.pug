@@ -1,30 +1,24 @@
-include /mixins/script.pug
-doctype html
-html 
-    head 
-        +meta(user.note,i18n('Archives'))
-        +useBasic
-        +useComponent('Neo/LabeledCard')
-        title= __title__(i18n('Archives'),user.name)
-    body(OCP='OVERRIDE') 
-        +NavigationBar
-        main.uWcon.withSide.no-anim
-            .sideCon#NEO_SIDE
-            .mainCon#NEO_REPLACE
-                .NeoWidget
-                    - let used_year = []
-                    - let y = {}
-                    each bid in split.value
-                        - let post = ID[bid]
-                        if !used_year.includes(post.datz.y)
-                            - y[post.datz.y] = []
-                            - used_year.push(post.datz.y)
-                        - y[post.datz.y].push(bid)
-                    each v,k in y
-                        h2.archive-label
-                            .year=k
-                        ul.cPostCon
-                            each item in v
-                                +LabeledCard(IDMap.get(item))
-                +PageNavigator(split.total,split.now,'archive')
-        +Footer
+extends /frame.pug
+
+append head
+    +meta(user.note,i18n('Archives'))
+    +useComponent('Neo/LabeledCard')
+    title= __title__(i18n('Archives'),user.name)
+
+block content
+    .NeoWidget
+        - let used_year = []
+        - let y = {}
+        each bid in split.value
+            - let post = ID[bid]
+            if !used_year.includes(post.fuzzyDate.y)
+                - y[post.fuzzyDate.y] = []
+                - used_year.push(post.fuzzyDate.y)
+            - y[post.fuzzyDate.y].push(bid)
+        each v,k in y
+            h2.archive-label
+                .year=k
+            ul.cPostCon
+                each item in v
+                    +LabeledCard(IDMap.get(item))
+    +PageNavigator(split.total,split.now,'archive')

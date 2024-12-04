@@ -1,52 +1,48 @@
-include /mixins/script.pug
+extends /frame.pug
 include /mixins/post_script.pug
-doctype html 
-html(lang="zh")
-    head 
-        +prelude(post)
-        +meta(post)
-        +useBasic
-        +use('KContentTable')
-        +useComponent('Neo/LicenseNotice')
-        title= __title__(post.title,'read')
-    body.colorful(OCP='OVERRIDE',style='--color1:'+Plugin.getColorByString(post.foreword).toHex()+';--color2:'+Plugin.getColorByString(post.parsed.foreword).toHex())
-        +NavigationBar
-        main.uWcon.withSide.no-anim
-            .sideCon#NEO_SIDE
-            .mainCon#NEO_REPLACE
-                .post-main.NeoWidget
-                    .post-meta
-                        .meta-content
-                            .pubDate
-                                i.iconBlock!= plugin.getSvg('material-symbols:calendar-today-outline-rounded')
-                                date= post.fuzzyDate.toString('-')
-                            .category
-                                i.iconBlock!= plugin.getSvg('material-symbols:book-2-outline-rounded')
-                                a.smooth-navigated(href=file('/category/s'+post.category[0]+'/1/index.html'))= post.category[0]
-                                    each val in post.category.slice(1)
-                                        .hr
-                                        a.smooth-navigated(href=file('/category/s'+val+'/1/index.html'))= val
-                            .tag
-                                i.iconBlock!= plugin.getSvg('material-symbols:tag-rounded')
-                                a.smooth-navigated(href=file('/tag/s'+post.tags[0]+'/1/index.html'))= post.tags[0]
-                                each val in post.tags.slice(1)
-                                    .hr
-                                    a.smooth-navigated(href=file('/tag/s'+val+'/1/index.html'))= val
-                    article#markdown_fillContent
-                        if post.old == true
-                            != post.parsed.foreword
-                        != post.parsed.content
-                    +LicenseNotice(post)
-                .Neo.NextPage
-                    - let earliest = post.nextID?false:true
-                    - let latest = post.prevID?false:true
-                    - let __prev = IDMap.get(post.prevID)
-                    - let __next = IDMap.get(post.nextID)
-                    a.smooth-navigated.left(href=!latest&&file(__prev.path.website),class=latest?'disabled':'')
-                        .arrow!= plugin.getSvg('material-symbols:chevron-right-rounded')
-                        .title= latest?i18n('Already latest'):__prev.title
-                    a.smooth-navigated.right(href=!earliest&&file(__next.path.website),class=earliest?'disabled':'')
-                        .title= earliest?i18n('Already earliest'):__next.title
-                        .arrow!= plugin.getSvg('material-symbols:chevron-right-rounded')
-        +Footer
-        +KContentTable
+
+append head
+    +prelude(post)
+    +meta(post)
+    +useComponent('Neo/LicenseNotice')
+    title= __title__(post.title,'read')
+
+block content   
+    .post-meta.NeoWidget
+        .post-meta
+            .meta-content
+                .pubDate
+                    i.iconBlock!= plugin.getSvg('material-symbols:calendar-today-outline-rounded')
+                    date= post.fuzzyDate.toString('-')
+                .category
+                    i.iconBlock!= plugin.getSvg('material-symbols:book-2-outline-rounded')
+                    a.smooth-navigated(href=file('/category/s'+post.category[0]+'/1/index.html'))= post.category[0]
+                        each val in post.category.slice(1)
+                            .hr
+                            a.smooth-navigated(href=file('/category/s'+val+'/1/index.html'))= val
+                .tag
+                    i.iconBlock!= plugin.getSvg('material-symbols:tag-rounded')
+                    a.smooth-navigated(href=file('/tag/s'+post.tags[0]+'/1/index.html'))= post.tags[0]
+                    each val in post.tags.slice(1)
+                        .hr
+                        a.smooth-navigated(href=file('/tag/s'+val+'/1/index.html'))= val
+            .meta-content
+                .wordCount
+                    span #{post.wordCount}#{i18n('Characters')}
+    .post-main.NeoWidget
+        article#markdown_fillContent
+            if post.old == true
+                != post.parsed.foreword
+            != post.parsed.content
+        +LicenseNotice(post)
+    .Neo.NextPage
+        - let earliest = post.nextID?false:true
+        - let latest = post.prevID?false:true
+        - let __prev = IDMap.get(post.prevID)
+        - let __next = IDMap.get(post.nextID)
+        a.smooth-navigated.left(href=!latest&&file(__prev.path.website),class=latest?'disabled':'')
+            .arrow!= plugin.getSvg('material-symbols:chevron-right-rounded')
+            .title= latest?i18n('Already latest'):__prev.title
+        a.smooth-navigated.right(href=!earliest&&file(__next.path.website),class=earliest?'disabled':'')
+            .title= earliest?i18n('Already earliest'):__next.title
+            .arrow!= plugin.getSvg('material-symbols:chevron-right-rounded')

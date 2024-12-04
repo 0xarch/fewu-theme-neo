@@ -1,17 +1,11 @@
-include /mixins/script.pug
+extends /frame.pug
 include /mixins/post_script.pug
-doctype html 
-html(lang="zh")
-    head 
-        +prelude(post)
-        +meta(post)
-        +useBasic
-        title= __title__(post.title,'read')
-    body.colorful(OCP='OVERRIDE',style='--bColor:'+plugin.getColorByString(post.content).toHex())
-        +NavigationBar
-        main.uWcon.withSide.no-anim
-            .sideCon#NEO_SIDE
-            .mainCon#NEO_REPLACE
-                article.NeoWidget
-                    #markdown_fillContent.container!= post.parsed.content
-        +Footer
+
+append head
+    +prelude(post)
+    +meta(post)
+    title= __title__(post.title,'read')
+
+block content
+    article.NeoWidget
+        #markdown_fillContent.container!= post.parsed.content

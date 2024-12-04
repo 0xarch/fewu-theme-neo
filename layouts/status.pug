@@ -1,31 +1,25 @@
-include /mixins/script.pug
-doctype html
-html
-    head 
+extends /frame.pug
+
+append head
         +meta(user.note,user.keyword||'')
-        +useBasic
         title= __title__(i18n('Status'),user.name)
-    body(OCP='OVERRIDE')
-        +NavigationBar
-        main.uWcon.withSide.no-anim
-            .sideCon#NEO_SIDE
-            .mainCon#NEO_REPLACE
-                .statusCon.NeoWidget
-                    h1= i18n('Status')
-                    h2= i18n('All categories')
-                    .cSortCon
-                        each i in site.used_categories
-                            +SingleSort(site.categories[i],'category')
-                    h2= i18n('All tags')
-                    .cSortCon
-                        each i in site.used_tags
-                            +SingleSort(site.tags[i],'tag')
-                    h2= i18n('Local information')
-                    small= i18n('@STAT_PRO_WARN')
-                    section
-                        each v,k in CONSTANTS
-                            p= k+' = '+v
-                    section
-                        each v,k in db.modules.versions
-                            p= k+' = '+v
-        +Footer
+
+block content
+    .statusCon.NeoWidget
+        h1= i18n('Status')
+        h2= i18n('All categories')
+        .cSortCon
+            each i in site.used_categories
+                +SingleSort(site.categories[i],'category')
+        h2= i18n('All tags')
+        .cSortCon
+            each i in site.used_tags
+                +SingleSort(site.tags[i],'tag')
+        h2= i18n('Local information')
+        small= i18n('@STAT_PRO_WARN')
+        section
+            each v,k in CONSTANTS
+                p= k+' = '+v
+        section
+            each v,k in db.modules.versions
+                p= k+' = '+v
