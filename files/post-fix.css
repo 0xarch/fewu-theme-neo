@@ -68,7 +68,7 @@ background-color: var(--Cbg);
 width: fit-content;
 }
 .post-meta {
-color: light-dark(#00000080, #ffffff80);
+color: var(--Ctext-50);
 font-weight: 900;
 overflow: hidden;
 width: 100%;
@@ -97,7 +97,7 @@ padding: .375rem;
     padding: .375rem;
     margin: 0 .125rem;
     border-radius: .375rem;
-    color: var(--Ctext-75);
+    color: var(--Ctext-50);
     background-color: transparent;
     transition: background-color .25s ease-in-out,
                 color .25s ease-in-out;
