@@ -1,7 +1,7 @@
 - declareComponent('Neo/Footer',['CSS_ACROSS'])
 
 mixin Footer()
-    footer.Neo.Footer.uWcon
+    footer.Neo.Footer
         .kLinks
             each v,k in theme.footerLinks
                 nav
@@ -35,6 +35,6 @@ mixin Footer()
                                 != fnc(v,k)
         br
         hr
-        .kCopyr.tac
+        .copyright
             != new Date().getFullYear()+ ' '
             != theme.useDefaultCopyrightText?i18n('@COPYR_TEXT'):user.data&&user.data.copyright
