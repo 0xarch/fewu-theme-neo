@@ -3,7 +3,14 @@ doctype html
 html(lang="zh")
     head
         block head
-            +useBasic
+            link(data-across='1',rel='stylesheet',href=file('files/style-min.css'))
+            script(data-across='1',type="module",src=file('files/ui.js'))
+            +useComponent('Neo/SearchComp')
+            +useComponent('Neo/Widgets/UserIntro')
+            +useComponent('Neo/Widgets/CateList')
+            +useComponent('Neo/Widgets/TagList')
+            +useComponent('Neo/PageNavigator')
+
     body(OCP='OVERRIDE')
         +NavigationBar
         main.no-anim#NEO_MAIN
